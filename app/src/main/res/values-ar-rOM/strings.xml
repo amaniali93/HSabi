@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">HSabi</string>
+    <string name="for_register">انشاء حساب جديد</string>
+    <string name="login">تسجيل دخول</string>
+    <string name="password">الرقم السري</string>
+    <string name="e_mail">البريد الالكتروني</string>
+    <string name="phone">رقم الهاتف</string>
+    <string name="loginpage">تسجيل الدخول</string>
+    <string name="register">تسجيل جديد</string>
+    <string name="re_type_password">اعادة كتابة الرقم السري</string>
+    <string name="your_name">الاسم كامل</string>
+    <string name="total">المجموع</string>
+    <string name="btn_bill">الفاتوره</string>
+    <string name="tv_total">0 ريال عماني</string>
+    <string name="tv_bill">اذهب للدفع</string>
+    <string name="btn_scan">امسح</string>
+    <string name="btn_cart">مشترياتي</string>
+    <string name="b_bill">فاتوره</string>
+    <string name="nav_login">تسجيل دخول</string>
+    <string name="nav_history">اخر فاتوره</string>
+    <string name="nav_logout">تسجيل خروج</string>
+    <string name="nav_contact">تواصل معنا</string>
+    <string name="nav_about_app">عن التطبيق</string>
+    <string name="btn_no_barcode">ادخال</string>
+    <string name="tv_no_barcode">ارقم الباركود</string>
+</resources>

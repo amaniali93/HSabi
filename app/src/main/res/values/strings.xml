@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">HSabi</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="for_register">create new account</string>
+    <string name="total">Total :</string>
+    <string name="login">Login</string>
+    <string name="password">Password</string>
+    <string name="e_mail">Email</string>
+    <string name="phone">phone</string>
+    <string name="loginpage">Login</string>
+    <string name="register">Register</string>
+    <string name="re_type_password">Re-type Password</string>
+    <string name="your_name">Full Name</string>
+    <string name="btn_bill">Bill</string>
+    <string name="tv_total">0 RO</string>
+    <string name="tv_bill">Go to pay</string>
+    <string name="btn_scan">Scan</string>
+    <string name="btn_cart">Cart</string>
+    <string name="b_bill">Bill</string>
+    <string name="nav_login">login</string>
+    <string name="nav_history">last bill</string>
+    <string name="nav_logout">Logout</string>
+    <string name="nav_contact">contact us</string>
+    <string name="nav_about_app">About HSabi</string>
+    <string name="btn_no_barcode">Enter</string>
+    <string name="tv_no_barcode">Enter Barcode Number</string>
+</resources>
