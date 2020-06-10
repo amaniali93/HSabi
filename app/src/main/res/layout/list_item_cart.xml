@@ -1,111 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/tools"
-    android:orientation="vertical"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-<androidx.cardview.widget.CardView
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
         android:id="@+id/card_myevent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        card_view:cardElevation="5dp"
-        card_view:cardUseCompatPadding="true"
         android:clickable="true"
-        android:foreground="?attr/selectableItemBackground">
-<ImageView
-    android:id="@+id/iv_cansel"
-    android:layout_width="40dp"
-    android:layout_height="40dp"
-    android:src="@drawable/cancel"
-    android:layout_marginStart="360dp"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="105dp"
-        android:orientation="horizontal"
-        android:weightSum="4">
+        android:foreground="?attr/selectableItemBackground"
+        card_view:cardElevation="5dp"
+        card_view:cardUseCompatPadding="true">
 
-
-        <ImageView
-            android:id="@+id/item_photo"
-            android:layout_width="70dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="16dp"
-            android:src="@drawable/square"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/tv_Productname"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:layout_marginBottom="16dp"
-            android:layout_weight="0.75"
-            android:text="Itemname"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textSize="13dp" />
+            android:layout_height="105dp">
 
-        <TextView
-            android:id="@+id/tv_size"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:layout_marginBottom="16dp"
-            android:layout_weight="1.1"
-            android:text="Size"
-            android:textAlignment="center"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textSize="13dp" />
+            <ImageView
+                android:id="@+id/iv_cansel"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/cancel"
+                card_view:layout_constraintEnd_toEndOf="parent"
+                card_view:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/add_img"
-            android:layout_width="40dp"
-            android:layout_height="20dp"
-            android:layout_marginStart="1dp"
-            android:layout_marginTop="70dp"
-            android:layout_marginBottom="10dp"
-            android:src="@drawable/add" />
+            <ImageView
+                android:id="@+id/item_photo"
+                android:layout_width="70dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="8dp"
+                android:src="@drawable/square"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                card_view:layout_constraintBottom_toBottomOf="parent"
+                card_view:layout_constraintStart_toStartOf="parent"
+                card_view:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/tv_qunt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="70dp"
-            android:layout_marginBottom="10dp"
-            android:layout_weight="1"
-            android:text="Total"
-            android:textAlignment="center"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textSize="13dp" />
+            <TextView
+                android:id="@+id/tv_Productname"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_weight="0.75"
+                android:text="Itemname"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="13dp"
+                card_view:layout_constraintBottom_toBottomOf="@+id/item_photo"
+                card_view:layout_constraintEnd_toStartOf="@+id/tv_size"
+                card_view:layout_constraintStart_toEndOf="@+id/item_photo"
+                card_view:layout_constraintTop_toTopOf="@+id/item_photo" />
 
-        <ImageView
-            android:id="@+id/remove_img"
-            android:layout_width="40dp"
-            android:layout_height="20dp"
-            android:layout_marginTop="70dp"
-            android:layout_marginBottom="10dp"
-            android:src="@drawable/remove"/>
+            <TextView
+                android:id="@+id/tv_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.1"
+                android:text="Size"
+                android:textAlignment="center"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="13dp"
+                app:layout_editor_absoluteY="44dp"
+                card_view:layout_constraintStart_toStartOf="@+id/add_img" />
 
-        <TextView
-            android:id="@+id/tv_rate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="16dp"
-            android:layout_weight="1"
-            android:text="Rate"
-            android:textAlignment="center"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textSize="13dp" />
+            <ImageView
+                android:id="@+id/add_img"
+                android:layout_width="40dp"
+                android:layout_height="20dp"
+                android:src="@drawable/add"
+                app:layout_editor_absoluteX="258dp"
+                card_view:layout_constraintBottom_toBottomOf="@+id/remove_img"
+                card_view:layout_constraintTop_toTopOf="@+id/remove_img" />
+
+            <TextView
+                android:id="@+id/tv_qunt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Total"
+                android:textAlignment="center"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="13dp"
+                card_view:layout_constraintBottom_toBottomOf="@+id/remove_img"
+                card_view:layout_constraintEnd_toStartOf="@+id/remove_img"
+                card_view:layout_constraintStart_toEndOf="@+id/add_img"
+                card_view:layout_constraintTop_toTopOf="@+id/remove_img" />
+
+            <ImageView
+                android:id="@+id/remove_img"
+                android:layout_width="40dp"
+                android:layout_height="20dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="16dp"
+                android:src="@drawable/remove"
+                card_view:layout_constraintBottom_toBottomOf="parent"
+                card_view:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_rate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_weight="1"
+                android:text="Rate"
+                android:textAlignment="center"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="13dp"
+                card_view:layout_constraintStart_toStartOf="@+id/tv_Productname"
+                card_view:layout_constraintTop_toBottomOf="@+id/tv_Productname" />
 
 
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </LinearLayout>
 
-
-</androidx.cardview.widget.CardView>
+    </androidx.cardview.widget.CardView>
 </LinearLayout>
