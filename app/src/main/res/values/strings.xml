@@ -26,4 +26,6 @@
     <string name="nav_about_app">About HSabi</string>
     <string name="btn_no_barcode">Enter</string>
     <string name="tv_no_barcode">Enter Barcode Number</string>
+    <string name="btn_barcode">SCANNING</string>
+    <string name="tv_or">______________or_______________</string>
 </resources>

@@ -8,7 +8,6 @@ import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.amani.hsabi.fragment.BillFragment;
 import com.amani.hsabi.fragment.CartFragment;
-import com.amani.hsabi.fragment.ScanFragment;
 
 public class MyViewPagerAdapter extends FragmentPagerAdapter {
 

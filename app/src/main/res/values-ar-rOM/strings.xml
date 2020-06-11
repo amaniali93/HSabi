@@ -23,5 +23,7 @@
     <string name="nav_contact">تواصل معنا</string>
     <string name="nav_about_app">عن التطبيق</string>
     <string name="btn_no_barcode">ادخال</string>
-    <string name="tv_no_barcode">ارقم الباركود</string>
+    <string name="tv_no_barcode">رقم الباركود</string>
+    <string name="btn_barcode">مسح الباركود</string>
+    <string name="tv_or">______________أو_______________</string>
 </resources>

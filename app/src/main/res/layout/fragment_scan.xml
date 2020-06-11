@@ -1,36 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:id="@+id/img_barcode" />
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/btn_Scan"
+        android:layout_width="230dp"
+        android:layout_height="90dp"
+        android:text="@string/btn_barcode"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/tv_or"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tv_or"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_below="@id/img_barcode"
-        android:text="______________or_______________"
+        android:text="@string/tv_or"
         android:textSize="30dp"
-        />
+        app:layout_constraintBottom_toTopOf="@+id/tv_no_barcode"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_Scan" />
 
     <Button
         android:id="@+id/btn_no_barcode"
         android:layout_width="150dp"
         android:layout_height="60dp"
-        android:layout_below="@id/tv_or"
-        android:layout_marginTop="164dp"
-        android:text="@string/btn_no_barcode" />
+        android:text="@string/btn_no_barcode"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.172"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_no_barcode" />
 
     <EditText
         android:id="@+id/tv_no_barcode"
         android:layout_width="350dp"
         android:layout_height="60dp"
         android:layout_below="@id/tv_or"
-        android:layout_marginTop="85dp"
-        android:text="@string/tv_no_barcode" />
+        android:text="@string/tv_no_barcode"
+        app:layout_constraintBottom_toTopOf="@+id/btn_no_barcode"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.262"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_or" />
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
