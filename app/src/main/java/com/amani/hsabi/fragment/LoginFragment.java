@@ -27,7 +27,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class LoginFragment extends Fragment {
     EditText emailid, password;
     Button btnlogin;
-    FirebaseAuth mFirebaseAuth;
+    private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener aAuthstatelistener;
     // TODO: Rename parameter arguments, choose names that match
 
@@ -63,11 +63,12 @@ public class LoginFragment extends Fragment {
         emailid = parentView.findViewById(R.id.edt_email);
         password = parentView.findViewById(R.id.edt_password);
         btnlogin = parentView.findViewById(R.id.btnd_login);
+        // Initialize Firebase Auth
+        mAuth = FirebaseAuth.getInstance();
         aAuthstatelistener = new FirebaseAuth.AuthStateListener() {
-
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser mFirebaseUser = mFirebaseAuth.getCurrentUser();
+                FirebaseUser mFirebaseUser = mAuth.getCurrentUser();
                 if (mFirebaseUser != null) {
                     Toast.makeText(getActivity(), "you are logged in", Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(getActivity().getApplication(), FunctionActivity.class);
@@ -88,25 +89,21 @@ public class LoginFragment extends Fragment {
                 } else if (passWord.isEmpty()) {
                     password.setError("Please enter password");
                     password.requestFocus();
-                } else if (email.isEmpty() && passWord.isEmpty()) {
-                    Toast.makeText(getActivity(), "Fields are Empty!", Toast.LENGTH_SHORT).show();
-                } else if (!(email.isEmpty() && passWord.isEmpty())) {
-                    mFirebaseAuth.signInWithEmailAndPassword(email, passWord)
+                } else {
+                    mAuth.signInWithEmailAndPassword(email, passWord)
                             .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
-                                        Toast.makeText(getActivity(), "Loggin Error!", Toast.LENGTH_SHORT).show();
-                                    } else {
                                         Intent intefunction = new Intent(getActivity().getApplication(), FunctionActivity.class);
                                         startActivity(intefunction);
+                                    } else {
+                                        Toast.makeText(getActivity(), "Loggin Error!", Toast.LENGTH_SHORT).show();
                                     }
 
                                 }
 
                             });
-                } else {
-                    Toast.makeText(getActivity(), "Error ocurred!", Toast.LENGTH_SHORT).show();
                 }
 
             }

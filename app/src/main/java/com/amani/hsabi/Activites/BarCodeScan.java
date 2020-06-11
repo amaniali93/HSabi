@@ -25,7 +25,7 @@ public class BarCodeScan extends AppCompatActivity implements ZXingScannerView.R
 
     @Override
     public void handleResult(Result result) {
-        MainActivity.resulttextview.setText(result.getText());
+//        MainActivity.resulttextview.setText(result.getText());
         onBackPressed();
     }
 

@@ -3,18 +3,15 @@ package com.amani.hsabi.fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.fragment.app.Fragment;
+
 import com.amani.hsabi.Activites.BarCodeScan;
-import com.amani.hsabi.Activites.FunctionActivity;
-import com.amani.hsabi.Interfaces.MediaInterface;
 import com.amani.hsabi.R;
 
 
@@ -26,16 +23,10 @@ public class ScanFragment extends Fragment {
     public ScanFragment() {
         // Required empty public constructor
     }
-    private MediaInterface mListener;
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof MediaInterface) {
-            mListener = (MediaInterface) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement MediatorInterface");
-        }
     }
 
     @Override
