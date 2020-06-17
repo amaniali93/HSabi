@@ -14,7 +14,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.amani.hsabi.Activites.FunctionActivity;
+import com.amani.hsabi.activites.FunctionActivity;
 import com.amani.hsabi.Interfaces.MediaInterface;
 import com.amani.hsabi.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -84,7 +84,7 @@ public class LoginFragment extends Fragment {
                 String email = emailid.getText().toString();
                 String passWord = password.getText().toString();
                 if (email.isEmpty()) {
-                    emailid.setError("Please enter emailId ");
+                        emailid.setError("Please enter emailId ");
                     emailid.requestFocus();
                 } else if (passWord.isEmpty()) {
                     password.setError("Please enter password");
@@ -112,11 +112,10 @@ public class LoginFragment extends Fragment {
         TextView btnNext = parentView.findViewById(R.id.register);
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
                 if (mListener != null) {
-                    mListener.changeFragmentTo(new RegisterFragment(), RegisterFragment.class.getSimpleName());
-                }
-            }
+                mListener.changeFragmentTo(new RegisterFragment(),RegisterFragment.class.getSimpleName());
+            }}
         });
 
 

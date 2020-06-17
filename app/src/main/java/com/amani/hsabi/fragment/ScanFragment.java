@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
-import com.amani.hsabi.Activites.BarCodeScan;
+import com.amani.hsabi.activites.BarCodeScan;
 import com.amani.hsabi.R;
 
 
@@ -42,7 +42,7 @@ public class ScanFragment extends Fragment {
         scanbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentScan = new Intent(getActivity().getApplication(), BarCodeScan.class);
+                Intent intentScan = new Intent(getActivity(), BarCodeScan.class);
                 startActivity(intentScan);
             }
         });
@@ -52,7 +52,12 @@ public class ScanFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 String barcodeNo = barcodeNomber.getText().toString();
+                if(barcodeNo.isEmpty()){
+                    barcodeNomber.setError("Number is not found");
+                    barcodeNomber.requestFocus();
+                }else{
 
+                }
             }
         });
         return parentView;

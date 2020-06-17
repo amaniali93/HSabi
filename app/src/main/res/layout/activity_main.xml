@@ -4,4 +4,4 @@
     android:layout_width="match_parent"
     android:id="@+id/fl_host"
     android:layout_height="wrap_content"
-    tools:context=".Activites.MainActivity" />
+    tools:context=".activites.MainActivity" />

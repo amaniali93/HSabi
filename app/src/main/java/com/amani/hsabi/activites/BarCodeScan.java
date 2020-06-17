@@ -1,4 +1,4 @@
-package com.amani.hsabi.Activites;
+package com.amani.hsabi.activites;
 
 import android.Manifest;
 import android.content.pm.PackageManager;

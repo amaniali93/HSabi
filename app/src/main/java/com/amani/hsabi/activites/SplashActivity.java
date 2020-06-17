@@ -1,4 +1,4 @@
-package com.amani.hsabi.Activites;
+package com.amani.hsabi.activites;
 
 import androidx.appcompat.app.AppCompatActivity;
 

@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="5dp"
-        android:background="#FF5722"
+        android:background="#EF6C00"
         android:weightSum="2">
 
         <TextView
@@ -49,10 +49,10 @@
         android:layout_height="60dp"
         android:layout_alignParentBottom="true"
         android:layout_gravity="center"
-        android:background="#FF5722"
+        android:background="#EF6C00"
         android:onClick="insertOrder"
         android:text="@string/btn_bill"
-        android:textColor="@android:color/white"
+        android:textColor="@android:color/background_dark"
         android:textSize="24dp"/>
 
 
