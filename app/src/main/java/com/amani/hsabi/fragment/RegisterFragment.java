@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -55,7 +56,7 @@ public class RegisterFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
+                             Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View parentView = inflater.inflate(R.layout.fragment_register, container, false);
         // Initialize Firebase Auth
@@ -64,9 +65,9 @@ public class RegisterFragment extends Fragment {
         mFirebaseUser = mAuth.getCurrentUser();
 
 
-        final TextInputEditText emailid = parentView.findViewById(R.id.et_email);
-        final TextInputEditText password = parentView.findViewById(R.id.et_password);// at least 6 chars, A-Z @ 1-9
-        final TextInputEditText phoneNo = parentView.findViewById(R.id.et_mobilnumber);
+        final EditText emailid = parentView.findViewById(R.id.et_email);
+        final EditText password = parentView.findViewById(R.id.et_password);// at least 6 chars, A-Z @ 1-9
+        final EditText phoneNo = parentView.findViewById(R.id.et_mobilnumber);
         final Button btnregister = parentView.findViewById(R.id.btn_register);
         final TextView btnNext = parentView.findViewById(R.id.tologin);
 
@@ -83,7 +84,7 @@ public class RegisterFragment extends Fragment {
                     emailid.setError("Please write your email");
                 } else if (!isEmailValid(email)) {
                     emailid.setError("Please write your email correctly!");
-                }else if (phone.isEmpty()) {
+                } else if (phone.isEmpty()) {
                     phoneNo.setError("Please write your phone number");
                 } else if (pass_word.isEmpty()) {
                     password.setError("Please write your password");
@@ -169,7 +170,7 @@ public class RegisterFragment extends Fragment {
         Date c = Calendar.getInstance().getTime();
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
-       return sdf.format(c);
+        return sdf.format(c);
     }
 
     public static boolean isEmailValid(String email) {
