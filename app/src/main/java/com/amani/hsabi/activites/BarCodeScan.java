@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -40,11 +41,10 @@ public class BarCodeScan extends AppCompatActivity implements ZXingScannerView.R
 
     @Override
     public void handleResult(Result result) {
-   //BarCodeScan.resulttextview.setText(result.getText());
-
+        //BarCodeScan.resulttextview.setText(result.getText());
+        Log.d("readResult", "handelResult(): " + result.getText());
         readProductInfoFromFirebase(result.getText());
-
-        onBackPressed();
+        Toast.makeText(this, result.getText(), Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -71,10 +71,11 @@ public class BarCodeScan extends AppCompatActivity implements ZXingScannerView.R
 // Write a message to the database
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference(MyContats.FB_KEY_PRODUCTS);
-
+        Log.d("readResult", "onDataChange()" );
 
         // Read from the database
         myRef.addValueEventListener(new ValueEventListener() {
+
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
@@ -82,6 +83,8 @@ public class BarCodeScan extends AppCompatActivity implements ZXingScannerView.R
 
                 for (DataSnapshot d : dataSnapshot.getChildren()) {
                     Product value = d.getValue(Product.class);
+                    Log.d("readResult", "onDataChange(): " + value.getpBarcodeNumber());
+
                     Log.d("BarCode", "Value is: " + value);
                     if (resultText.equals(value.getpBarcodeNumber().toString())) {
                         // here write the code you want
@@ -96,7 +99,7 @@ public class BarCodeScan extends AppCompatActivity implements ZXingScannerView.R
             @Override
             public void onCancelled(DatabaseError error) {
                 // Failed to read value
-                Log.w("BarCode", "Failed to read value.", error.toException());
+                Log.w("readResult", "Failed to read value.", error.toException());
             }
         });
 
@@ -106,14 +109,14 @@ public class BarCodeScan extends AppCompatActivity implements ZXingScannerView.R
         AlertDialog.Builder dialog = new AlertDialog.Builder(BarCodeScan.this);
         dialog.setCancelable(false);
         dialog.setTitle("About Products");
-        dialog.setMessage(value+"Are you sure you want to add  to your Bill?" );
+        dialog.setMessage(value + "Are you sure you want to add  to your Bill?");
         dialog.setPositiveButton("yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int id) {
 
                 //Action for "yes".
 
-                Intent intent=new Intent(BarCodeScan.this, FunctionActivity.class);
+                Intent intent = new Intent(BarCodeScan.this, FunctionActivity.class);
 
                 startActivity(intent);
             }
