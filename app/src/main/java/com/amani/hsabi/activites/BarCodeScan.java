@@ -86,7 +86,7 @@ public class BarCodeScan extends AppCompatActivity implements ZXingScannerView.R
                     Log.d("readResult", "onDataChange(): " + value.getpBarcodeNumber());
 
                     Log.d("BarCode", "Value is: " + value);
-                    if (resultText.equals(value.getpBarcodeNumber().toString())) {
+                    if (resultText.equals(value.getpBarcodeNumber())) {
                         // here write the code you want
                         showAlertDialog(value);
                         break;

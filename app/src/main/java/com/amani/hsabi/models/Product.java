@@ -5,7 +5,7 @@ import androidx.fragment.app.FragmentManager;
 public class Product {
 
     private String pId;
-    private Long pBarcodeNumber;
+    private String pBarcodeNumber;
     private double pPrice;
     private String pName;
     private String pSize;
@@ -24,11 +24,11 @@ public class Product {
         this.pId = pId;
     }
 
-    public Long getpBarcodeNumber() {
+    public String getpBarcodeNumber() {
         return pBarcodeNumber;
     }
 
-    public void setpBarcodeNumber(Long pBarcodeNumber) {
+    public void setpBarcodeNumber(String pBarcodeNumber) {
         this.pBarcodeNumber = pBarcodeNumber;
     }
 
