@@ -31,13 +31,10 @@ public class FunctionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_function);
 
 
-
         TabLayout tabs = findViewById(R.id.tabs);
         ViewPager viewPager = findViewById(R.id.view_pager);
-
         MyViewPagerAdapter adapter = new MyViewPagerAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         viewPager.setAdapter(adapter);
-
         tabs.setupWithViewPager(viewPager);
 
     }

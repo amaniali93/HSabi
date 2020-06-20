@@ -71,7 +71,7 @@ public class BarCodeScan extends AppCompatActivity implements ZXingScannerView.R
 // Write a message to the database
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference(MyContats.FB_KEY_PRODUCTS);
-        Log.d("readResult", "onDataChange()" );
+        Log.d("readResult", "onDataChange()");
 
         // Read from the database
         myRef.addValueEventListener(new ValueEventListener() {
@@ -105,7 +105,7 @@ public class BarCodeScan extends AppCompatActivity implements ZXingScannerView.R
 
     }
 
-    private void showAlertDialog(Product value) {
+    private void showAlertDialog(final Product value) {
         AlertDialog.Builder dialog = new AlertDialog.Builder(BarCodeScan.this);
         dialog.setCancelable(false);
         dialog.setTitle("About Products");
@@ -117,7 +117,7 @@ public class BarCodeScan extends AppCompatActivity implements ZXingScannerView.R
                 //Action for "yes".
 
                 Intent intent = new Intent(BarCodeScan.this, FunctionActivity.class);
-
+                intent.putExtra(MyContats.KEY_SCANNED_PRODUCT, value);
                 startActivity(intent);
             }
         })

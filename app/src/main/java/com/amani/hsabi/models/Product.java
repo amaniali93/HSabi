@@ -2,11 +2,13 @@ package com.amani.hsabi.models;
 
 import androidx.fragment.app.FragmentManager;
 
-public class Product {
+import java.io.Serializable;
+
+public class Product implements Serializable {
 
     private String pId;
     private String pBarcodeNumber;
-    private double pPrice;
+    private String pPrice;
     private String pName;
     private String pSize;
     private String pImg;
@@ -32,11 +34,11 @@ public class Product {
         this.pBarcodeNumber = pBarcodeNumber;
     }
 
-    public double getpPrice() {
+    public String getpPrice() {
         return pPrice;
     }
 
-    public void setpPrice(double pPrice) {
+    public void setpPrice(String pPrice) {
         this.pPrice = pPrice;
     }
 
