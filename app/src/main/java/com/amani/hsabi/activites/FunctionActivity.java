@@ -17,6 +17,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.amani.hsabi.Adaptors.MyViewPagerAdapter;
 import com.amani.hsabi.R;
+import com.amani.hsabi.fragment.CartFragment;
 import com.amani.hsabi.fragment.HistoryFragment;
 import com.amani.hsabi.fragment.LoginFragment;
 import com.google.android.material.tabs.TabLayout;
@@ -28,6 +29,7 @@ public class FunctionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_function);
+
 
 
         TabLayout tabs = findViewById(R.id.tabs);
@@ -92,5 +94,6 @@ public class FunctionActivity extends AppCompatActivity {
         FirebaseAuth.getInstance().signOut();
         changeFragmentTo(new LoginFragment(), LoginFragment.class.getSimpleName());
     }
+
 
 }

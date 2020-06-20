@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment;
 
 import com.amani.hsabi.Interfaces.MediaInterface;
 import com.amani.hsabi.R;
+import com.amani.hsabi.models.MyContats;
 import com.amani.hsabi.models.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -147,7 +148,7 @@ public class RegisterFragment extends Fragment {
 
         // Write a message to the mDatabase
         FirebaseDatabase database = FirebaseDatabase.getInstance();// allow to access firebase mDatabase
-        DatabaseReference myRef = database.getReference();//allow to crate refrance == table
+        DatabaseReference myRef = database.getReference(MyContats.FB_KEY_USERS);//allow to crate refrance == table
         myRef.child(u.getId()).setValue(u).addOnCompleteListener(getActivity(), new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {

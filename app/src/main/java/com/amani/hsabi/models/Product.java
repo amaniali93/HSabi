@@ -1,5 +1,7 @@
 package com.amani.hsabi.models;
 
+import androidx.fragment.app.FragmentManager;
+
 public class Product {
 
     private String pId;
@@ -9,7 +11,11 @@ public class Product {
     private String pSize;
     private String pImg;
 
+    public void setProduct(Product value) {
+    }
 
+    public void show(FragmentManager supportFragmentManager, String simpleName) {
+    }
     public String getpId() {
         return pId;
     }
