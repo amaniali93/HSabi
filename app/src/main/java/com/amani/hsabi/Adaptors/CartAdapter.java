@@ -3,7 +3,6 @@ package com.amani.hsabi.Adaptors;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -11,26 +10,25 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.amani.hsabi.R;
-import com.amani.hsabi.models.CartModel;
+import com.amani.hsabi.models.Product;
 
 import java.util.ArrayList;
 
 public class CartAdapter  extends RecyclerView.Adapter<CartAdapter.MyViewHolder> {
 
 
-
-    private ArrayList<CartModel> mCart;
+    private ArrayList<Product> mCart;
 
     public CartAdapter() {
         mCart = new ArrayList<>();
     }
 
-    public void update(int position, CartModel call) {
+    public void update(int position, Product call) {
         mCart.add(position, call);
         notifyItemChanged(position);
     }
 
-    public void update(ArrayList<CartModel> calls) {
+    public void update(ArrayList<Product> calls) {
         mCart = calls;
         notifyDataSetChanged();
     }
@@ -48,14 +46,12 @@ public class CartAdapter  extends RecyclerView.Adapter<CartAdapter.MyViewHolder>
     @Override
     public void onBindViewHolder(@NonNull CartAdapter.MyViewHolder holder, int position) {
 
-        CartModel call = mCart.get(position);
-        holder.ivcancelImage.setImageResource(call.getCancelImage());
-        holder.ivproductImage.setImageResource(call.getProductImage());
-        holder.ivaddImage.setImageResource(call.getAddImage());
-        holder.ivremoveImage.setImageResource(call.getRemoveImage());
-        holder.tvproductname.setText(call.getProductname());
-        holder.tvproductsize.setText(call.getProductsize());
-        holder.tvquntity.setText(call.getQuntity());
+        Product product = mCart.get(position);
+
+        //Glide.with(mContext).load( product.getpImg()).into(holder.ivproductImage);
+        holder.tvproductname.setText(product.getpName());
+        holder.tvproductsize.setText(product.getpSize());
+        holder.tvquntity.setText(product.getpPrice());
 
     }
 
