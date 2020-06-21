@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -13,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.amani.hsabi.fragment.CartFragment;
 import com.amani.hsabi.models.MyContats;
 import com.amani.hsabi.models.Product;
 import com.google.firebase.database.DataSnapshot;
@@ -22,6 +24,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.zxing.Result;
 
+import java.sql.SQLData;
 import java.text.BreakIterator;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
@@ -29,6 +32,8 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView;
 public class BarCodeScan extends AppCompatActivity implements ZXingScannerView.ResultHandler {
     private static BreakIterator resulttextview;
     int MY_PERMISSIONS_REQUEST_CAMERA = 0;
+    DB_SQLlite db = new DB_SQLlite(this);
+
 
     ZXingScannerView scannerView;
 
@@ -45,6 +50,7 @@ public class BarCodeScan extends AppCompatActivity implements ZXingScannerView.R
         Log.d("readResult", "handelResult(): " + result.getText());
         readProductInfoFromFirebase(result.getText());
         Toast.makeText(this, result.getText(), Toast.LENGTH_SHORT).show();
+
     }
 
     @Override
@@ -108,17 +114,30 @@ public class BarCodeScan extends AppCompatActivity implements ZXingScannerView.R
     private void showAlertDialog(final Product value) {
         AlertDialog.Builder dialog = new AlertDialog.Builder(BarCodeScan.this);
         dialog.setCancelable(false);
-        dialog.setTitle("About Products");
-        dialog.setMessage(value + "Are you sure you want to add  to your Bill?");
+        dialog.setTitle("About Product");
+        dialog.setMessage("BarCode Number:   " + value.getpBarcodeNumber() + "\n" +
+                "Product Name:     " + value.getpName() + "\n" +
+                "Product Price:    " + value.getpPrice() + "\n" +
+                "Product Size:     " + value.getpSize() + "\n" +
+                "Are you sure you want to add  to your Bill?");
+
         dialog.setPositiveButton("yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int id) {
-
-                //Action for "yes".
-
+                //Action for "yes"
+                DB_SQLlite  db = new DB_SQLlite(BarCodeScan.this);
+                db.addProduct(value) ;
+                Boolean result = db.addProduct(value);
+                if(result==true){
+                    Toast.makeText(BarCodeScan.this, "added successfully!!", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(BarCodeScan.this, "Error Happend!!", Toast.LENGTH_SHORT).show();
+                }
                 Intent intent = new Intent(BarCodeScan.this, FunctionActivity.class);
                 intent.putExtra(MyContats.KEY_SCANNED_PRODUCT, value);
                 startActivity(intent);
+
+
             }
         })
                 .setNegativeButton("no", new DialogInterface.OnClickListener() {

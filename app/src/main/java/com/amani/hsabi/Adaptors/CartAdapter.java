@@ -3,6 +3,7 @@ package com.amani.hsabi.Adaptors;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -84,6 +85,10 @@ public class CartAdapter  extends RecyclerView.Adapter<CartAdapter.MyViewHolder>
            tvquntity = itemView.findViewById(R.id.tv_qunt);
 
         }
+       // public void showData(){
+           // ArrayList<String> listdata=db.getProducts();
+         //   ArrayAdapter arrayAdapter=new ArrayAdapter(this,android.R.layout.list_item_cart,listdata);
+      //  }
     }
 }
 
