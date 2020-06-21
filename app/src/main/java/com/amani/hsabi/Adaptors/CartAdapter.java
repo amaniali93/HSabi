@@ -1,5 +1,6 @@
 package com.amani.hsabi.Adaptors;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,11 +12,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.amani.hsabi.R;
 import com.amani.hsabi.models.Product;
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
 public class CartAdapter  extends RecyclerView.Adapter<CartAdapter.MyViewHolder> {
-
+    private Context mContext;
 
     private ArrayList<Product> mCart;
 
@@ -48,10 +50,11 @@ public class CartAdapter  extends RecyclerView.Adapter<CartAdapter.MyViewHolder>
 
         Product product = mCart.get(position);
 
-        //Glide.with(mContext).load( product.getpImg()).into(holder.ivproductImage);
+
+        Glide.with(mContext).load( product.getpImg()).into(holder.ivproductImage);
         holder.tvproductname.setText(product.getpName());
         holder.tvproductsize.setText(product.getpSize());
-        holder.tvquntity.setText(product.getpPrice());
+        holder.tvquntity.setText(getItemCount());
 
     }
 
