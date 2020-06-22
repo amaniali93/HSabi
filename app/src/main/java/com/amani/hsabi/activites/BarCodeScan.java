@@ -132,14 +132,18 @@ public class BarCodeScan extends AppCompatActivity implements ZXingScannerView.R
                 editor.putString("pSize" , value.getpSize());
                 editor.apply();*/
                 DB_SQLlite db = new DB_SQLlite(BarCodeScan.this);
-                boolean result = db.addProduct(value);
-                if (result) {
+                int result = db.addProduct(value);
+                if (result == -1) {
+                    Toast.makeText(BarCodeScan.this, "Error happened while storing item!", Toast.LENGTH_SHORT).show();
+                    onBackPressed();
+                } else if (result == 0) {
+                    Toast.makeText(BarCodeScan.this, "This Product is already in cart!", Toast.LENGTH_SHORT).show();
+                    onBackPressed();
+                } else {
                     Toast.makeText(BarCodeScan.this, "added successfully!!", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(BarCodeScan.this, FunctionActivity.class);
                     intent.putExtra(MyContats.KEY_SCANNED_PRODUCT, value);
                     startActivity(intent);
-                } else {
-                    Toast.makeText(BarCodeScan.this, "Error Happend!!", Toast.LENGTH_SHORT).show();
                 }
 
 

@@ -1,4 +1,5 @@
 package com.amani.hsabi.activites;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -14,8 +15,10 @@ import java.util.ArrayList;
 public class DB_SQLlite extends SQLiteOpenHelper {
     public static final String DB_name = "data.db";
 
+
     public DB_SQLlite(@Nullable Context context) {
         super(context, DB_name, null, 1);
+
     }
 
     @Override
@@ -30,22 +33,39 @@ public class DB_SQLlite extends SQLiteOpenHelper {
 
     }
 
-    public boolean addProduct(Product value) {
+    public int addProduct(Product value) {
 
+        if (isNewItem(value.getpId())) {
+            SQLiteDatabase db = this.getWritableDatabase();
+            ContentValues cv = new ContentValues();
+            cv.put("pId", value.getpId());
+            cv.put("pBarcodeNumber", value.getpBarcodeNumber());
+            cv.put("pPrice", value.getpPrice());
+            cv.put("pName", value.getpName());
+            cv.put("pSize", value.getpSize());
+            cv.put(" pImg", value.getpImg());
+            long result = db.insert("scan_Product", null, cv);
+            return (int) result;
+        } else {
+            return 0;
+        }
+    }
+
+    private boolean isNewItem(String pId) {
+        String Query = "Select * from scan_Product  where pId = " + "'" + pId + "'";
         SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues cv = new ContentValues();
-        cv.put("pId", value.getpId());
-        cv.put("pBarcodeNumber", value.getpBarcodeNumber());
-        cv.put("pPrice", value.getpPrice());
-        cv.put("pName", value.getpName());
-        cv.put("pSize", value.getpSize());
-        cv.put(" pImg", value.getpImg());
-        Long result = db.insert("scan_Product", null, cv);
-        return result != -1;
+        Cursor cursor = db.rawQuery(Query, null);
+        if (cursor.getCount() <= 0) {
+            cursor.close();
+            return true; // new Item
+        }
+        cursor.close();
+
+        return false; // not New Item
     }
 
 
-   public ArrayList<Product> getProducts() {
+    public ArrayList<Product> getProducts() {
         ArrayList<Product> products = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor res = db.rawQuery("select* from scan_Product", null);
@@ -65,6 +85,7 @@ public class DB_SQLlite extends SQLiteOpenHelper {
             p.setpName(t3);
             p.setpSize(t4);
             p.setpImg(t5);
+            products.add(p);
 
         } while (res.moveToNext());
 

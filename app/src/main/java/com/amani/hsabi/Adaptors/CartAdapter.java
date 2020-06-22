@@ -23,16 +23,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
 
     public CartAdapter() {
         mCart = new ArrayList<>();
-       /* Product product1 = new Product();
-        SharedPreferences editpref = mContext.getSharedPreferences("Product", MODE_PRIVATE);
-        product1.setpId(editpref.getString("pId", ""));
-        product1.setpBarcodeNumber(editpref.getString("PbarcodeNo", ""));
-        product1.setpName(editpref.getString("pName", ""));
-        product1.setpImg(editpref.getString("pImg", ""));
-        product1.setpPrice(editpref.getString("pPrice", ""));
-        product1.setpSize(editpref.getString("pSize", ""));
-        mCart.add(product1);*/
-
     }
 
     public void update(int position, Product call) {
@@ -64,7 +54,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
         Glide.with(mContext).load(product.getpImg()).into(holder.ivproductImage);
         holder.tvproductname.setText(product.getpName());
         holder.tvproductsize.setText(product.getpSize());
-        holder.tvquntity.setText(getItemCount());
+        holder.tvquntity.setText(getItemCount() + "");
 
     }
 
