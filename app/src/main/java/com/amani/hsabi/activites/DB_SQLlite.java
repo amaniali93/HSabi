@@ -1,5 +1,4 @@
-//package com.amani.hsabi.activites;
-/*
+package com.amani.hsabi.activites;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -85,4 +84,3 @@ public class DB_SQLlite extends SQLiteOpenHelper {
 
 
 }
-*/

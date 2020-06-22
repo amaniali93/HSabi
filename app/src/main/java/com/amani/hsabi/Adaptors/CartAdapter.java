@@ -1,7 +1,6 @@
 package com.amani.hsabi.Adaptors;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,24 +16,22 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
-import static android.content.Context.MODE_PRIVATE;
-
-public class CartAdapter  extends RecyclerView.Adapter<CartAdapter.MyViewHolder> {
+public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> {
     private Context mContext;
-    int count=0;
+    int count = 0;
     private ArrayList<Product> mCart;
 
     public CartAdapter() {
         mCart = new ArrayList<>();
-        Product product1 = new Product();
-SharedPreferences editpref = mContext.getSharedPreferences("Product",MODE_PRIVATE);
+       /* Product product1 = new Product();
+        SharedPreferences editpref = mContext.getSharedPreferences("Product", MODE_PRIVATE);
         product1.setpId(editpref.getString("pId", ""));
         product1.setpBarcodeNumber(editpref.getString("PbarcodeNo", ""));
         product1.setpName(editpref.getString("pName", ""));
-        product1.setpImg(editpref.getString("pImg",""));
-        product1.setpPrice(editpref.getString("pPrice",""));
-        product1.setpSize(editpref.getString("pSize",""));
-        mCart.add(product1);
+        product1.setpImg(editpref.getString("pImg", ""));
+        product1.setpPrice(editpref.getString("pPrice", ""));
+        product1.setpSize(editpref.getString("pSize", ""));
+        mCart.add(product1);*/
 
     }
 
@@ -52,7 +49,7 @@ SharedPreferences editpref = mContext.getSharedPreferences("Product",MODE_PRIVAT
     @NonNull
     @Override
     public CartAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        mContext=parent.getContext();
+        mContext = parent.getContext();
         View listItemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_cart, parent, false);
 
         return new MyViewHolder(listItemView);
@@ -64,7 +61,7 @@ SharedPreferences editpref = mContext.getSharedPreferences("Product",MODE_PRIVAT
         Product product = mCart.get(position);
 
 
-        Glide.with(mContext).load( product.getpImg()).into(holder.ivproductImage);
+        Glide.with(mContext).load(product.getpImg()).into(holder.ivproductImage);
         holder.tvproductname.setText(product.getpName());
         holder.tvproductsize.setText(product.getpSize());
         holder.tvquntity.setText(getItemCount());
@@ -88,13 +85,13 @@ SharedPreferences editpref = mContext.getSharedPreferences("Product",MODE_PRIVAT
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-           ivcancelImage = itemView.findViewById(R.id.iv_cansel);
-           ivproductImage = itemView.findViewById(R.id.item_photo);
-           ivremoveImage = itemView.findViewById(R.id.remove_img);
-           ivaddImage = itemView.findViewById(R.id.add_img);
-           tvproductname = itemView.findViewById(R.id.tv_Productname);
-           tvproductsize = itemView.findViewById(R.id.tv_size);
-           tvquntity = itemView.findViewById(R.id.tv_qunt);
+            ivcancelImage = itemView.findViewById(R.id.iv_cansel);
+            ivproductImage = itemView.findViewById(R.id.item_photo);
+            ivremoveImage = itemView.findViewById(R.id.remove_img);
+            ivaddImage = itemView.findViewById(R.id.add_img);
+            tvproductname = itemView.findViewById(R.id.tv_Productname);
+            tvproductsize = itemView.findViewById(R.id.tv_size);
+            tvquntity = itemView.findViewById(R.id.tv_qunt);
 
             ivaddImage.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -111,8 +108,6 @@ SharedPreferences editpref = mContext.getSharedPreferences("Product",MODE_PRIVAT
                     tvquntity.setText(String.valueOf(count));
                 }
             });
-
-
 
 
         }
