@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -32,7 +33,7 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView;
 public class BarCodeScan extends AppCompatActivity implements ZXingScannerView.ResultHandler {
     private static BreakIterator resulttextview;
     int MY_PERMISSIONS_REQUEST_CAMERA = 0;
-    DB_SQLlite db = new DB_SQLlite(this);
+    //DB_SQLlite db = new DB_SQLlite(this);
 
 
     ZXingScannerView scannerView;
@@ -125,14 +126,23 @@ public class BarCodeScan extends AppCompatActivity implements ZXingScannerView.R
             @Override
             public void onClick(DialogInterface dialog, int id) {
                 //Action for "yes"
-                DB_SQLlite  db = new DB_SQLlite(BarCodeScan.this);
-                db.addProduct(value) ;
-                Boolean result = db.addProduct(value);
-                if(result==true){
-                    Toast.makeText(BarCodeScan.this, "added successfully!!", Toast.LENGTH_SHORT).show();
-                }else{
-                    Toast.makeText(BarCodeScan.this, "Error Happend!!", Toast.LENGTH_SHORT).show();
-                }
+                SharedPreferences editorPrefernce =  getApplicationContext().getSharedPreferences("Product",MODE_PRIVATE);
+                SharedPreferences.Editor editor = editorPrefernce.edit();
+                editor.putString("pId",value.getpId());
+                editor.putString("PbarcodeNo",value.getpBarcodeNumber());
+                editor.putString("pName" , value.getpName());
+                editor.putString("pImg" , value.getpImg());
+                editor.putString("pPrice" , value.getpPrice());
+                editor.putString("pSize" , value.getpSize());
+                editor.apply();
+                //DB_SQLlite  db = new DB_SQLlite(BarCodeScan.this);
+              //  db.addProduct(value) ;
+              //  Boolean result = db.addProduct(value);
+               // if(result==true){
+                  //  Toast.makeText(BarCodeScan.this, "added successfully!!", Toast.LENGTH_SHORT).show();
+              //  }else{
+                //    Toast.makeText(BarCodeScan.this, "Error Happend!!", Toast.LENGTH_SHORT).show();
+              //  }
                 Intent intent = new Intent(BarCodeScan.this, FunctionActivity.class);
                 intent.putExtra(MyContats.KEY_SCANNED_PRODUCT, value);
                 startActivity(intent);

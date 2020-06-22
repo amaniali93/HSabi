@@ -1,5 +1,5 @@
-package com.amani.hsabi.activites;
-
+//package com.amani.hsabi.activites;
+/*
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -49,7 +49,7 @@ public class DB_SQLlite extends SQLiteOpenHelper {
     }
 
 
-    public ArrayList<Product> getProducts() {
+   public ArrayList<Product> getProducts() {
         ArrayList<Product> products = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor res = db.rawQuery("select* from scan_Product", null);
@@ -85,3 +85,4 @@ public class DB_SQLlite extends SQLiteOpenHelper {
 
 
 }
+*/

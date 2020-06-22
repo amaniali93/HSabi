@@ -18,7 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.amani.hsabi.Adaptors.CartAdapter;
 import com.amani.hsabi.Interfaces.MediaInterface;
 import com.amani.hsabi.R;
-import com.amani.hsabi.activites.DB_SQLlite;
+//import com.amani.hsabi.activites.DB_SQLlite;
 
 
 public class CartFragment extends Fragment {
@@ -38,7 +38,6 @@ public class CartFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-
     }
 
     @Override
@@ -74,9 +73,9 @@ public class CartFragment extends Fragment {
         setupRecyclerView(recyclerView);
         mAdapter = new CartAdapter();
 
-        DB_SQLlite db = new DB_SQLlite(mContext);
+       // DB_SQLlite db = new DB_SQLlite(mContext);
 
-        mAdapter.update(db.getProducts());
+       // mAdapter.update(db.getProducts());
 
         recyclerView.setAdapter(mAdapter);
 

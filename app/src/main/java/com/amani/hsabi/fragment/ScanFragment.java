@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -96,6 +97,7 @@ public class ScanFragment extends Fragment {
                                         @Override
                                         public void onClick(DialogInterface dialog, int id) {
                                             //Action for "yes"
+
                                             Intent intent = new Intent(getContext(), FunctionActivity.class);
 
                                             intent.putExtra(MyContats.KEY_SCANNED_PRODUCT, value);
