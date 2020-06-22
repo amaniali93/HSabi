@@ -41,10 +41,7 @@ public class DB_SQLlite extends SQLiteOpenHelper {
         cv.put("pSize", value.getpSize());
         cv.put(" pImg", value.getpImg());
         Long result = db.insert("scan_Product", null, cv);
-        if (result == -1)
-            return false;
-        else
-            return true;
+        return result != -1;
     }
 
 

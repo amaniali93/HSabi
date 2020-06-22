@@ -135,12 +135,12 @@ public class BarCodeScan extends AppCompatActivity implements ZXingScannerView.R
                 boolean result = db.addProduct(value);
                 if (result) {
                     Toast.makeText(BarCodeScan.this, "added successfully!!", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(BarCodeScan.this, FunctionActivity.class);
+                    intent.putExtra(MyContats.KEY_SCANNED_PRODUCT, value);
+                    startActivity(intent);
                 } else {
                     Toast.makeText(BarCodeScan.this, "Error Happend!!", Toast.LENGTH_SHORT).show();
                 }
-                Intent intent = new Intent(BarCodeScan.this, FunctionActivity.class);
-                intent.putExtra(MyContats.KEY_SCANNED_PRODUCT, value);
-                startActivity(intent);
 
 
             }
