@@ -60,7 +60,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
         final double a = Double.parseDouble(product.getpPrice());
 
         double price = count * a;
-        holder.edPrice.setText((int) price);
+        holder.edPrice.setText((int) price + " OMR");
 
 
     }

@@ -69,26 +69,26 @@ public class DB_SQLlite extends SQLiteOpenHelper {
         ArrayList<Product> products = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor res = db.rawQuery("select* from scan_Product", null);
-        res.moveToFirst();
-        do {
-            Product p = new Product();
-            String t0 = res.getString(0);
-            String t1 = res.getString(1);
-            String t2 = res.getString(2);
-            String t3 = res.getString(3);
-            String t4 = res.getString(4);
-            String t5 = res.getString(5);
+        if (res.moveToFirst()) {
+            do {
+                Product p = new Product();
+                String t0 = res.getString(0);
+                String t1 = res.getString(1);
+                String t2 = res.getString(2);
+                String t3 = res.getString(3);
+                String t4 = res.getString(4);
+                String t5 = res.getString(5);
 
-            p.setpId(t0);
-            p.setpBarcodeNumber(t1);
-            p.setpPrice(t2);
-            p.setpName(t3);
-            p.setpSize(t4);
-            p.setpImg(t5);
-            products.add(p);
+                p.setpId(t0);
+                p.setpBarcodeNumber(t1);
+                p.setpPrice(t2);
+                p.setpName(t3);
+                p.setpSize(t4);
+                p.setpImg(t5);
+                products.add(p);
 
-        } while (res.moveToNext());
-
+            } while (res.moveToNext());
+        }
         return products;
     }
 
