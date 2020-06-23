@@ -4,13 +4,16 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.amani.hsabi.R;
+import com.amani.hsabi.activites.DB_SQLlite;
 import com.amani.hsabi.models.Product;
 import com.bumptech.glide.Glide;
 
@@ -18,7 +21,7 @@ import java.util.ArrayList;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> {
     private Context mContext;
-    int count = 0;
+    int count = 1;
     private ArrayList<Product> mCart;
 
     public CartAdapter() {
@@ -45,23 +48,29 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
         return new MyViewHolder(listItemView);
     }
 
+
     @Override
-    public void onBindViewHolder(@NonNull CartAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
         Product product = mCart.get(position);
-
-
         Glide.with(mContext).load(product.getpImg()).into(holder.ivproductImage);
         holder.tvproductname.setText(product.getpName());
         holder.tvproductsize.setText(product.getpSize());
-        holder.tvquntity.setText(getItemCount() + "");
+        holder.tvquntity.setText(count + "");
+        final double a = Double.parseDouble(product.getpPrice());
+
+        double price = count * a;
+        holder.edPrice.setText((int) price);
+
 
     }
+
 
     @Override
     public int getItemCount() {
         return mCart.size();
     }
+
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
@@ -71,7 +80,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
         ImageView ivaddImage;
         TextView tvproductname;
         TextView tvproductsize;
-        TextView tvquntity;
+        EditText tvquntity;
+        TextView edPrice;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -82,6 +92,10 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
             tvproductname = itemView.findViewById(R.id.tv_Productname);
             tvproductsize = itemView.findViewById(R.id.tv_size);
             tvquntity = itemView.findViewById(R.id.tv_qunt);
+            edPrice = itemView.findViewById(R.id.tv_price);
+
+
+
 
             ivaddImage.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -96,6 +110,20 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
                 public void onClick(View v) {
                     count--;
                     tvquntity.setText(String.valueOf(count));
+                }
+            });
+            ivcancelImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    DB_SQLlite db = new DB_SQLlite(mContext);
+
+                    db.delete(getItemCount());
+                    mCart.remove(getAdapterPosition());
+                    notifyDataSetChanged();
+
+                    Toast.makeText(mContext, "Product deleted!", Toast.LENGTH_SHORT).show();
+
+
                 }
             });
 

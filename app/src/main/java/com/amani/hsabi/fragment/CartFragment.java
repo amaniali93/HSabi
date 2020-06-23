@@ -56,13 +56,7 @@ public class CartFragment extends Fragment {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
     }
-    //private void createProductInfo(ArrayList<Product> cart) {
-//Product carts;
 
-    //add first Item
-    //cart = new ArrayList<Product>();
-
-    //  }-->
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

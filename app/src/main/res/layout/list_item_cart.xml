@@ -65,7 +65,8 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textSize="13dp"
                 app:layout_editor_absoluteY="44dp"
-                card_view:layout_constraintStart_toStartOf="@+id/add_img" />
+                card_view:layout_constraintBottom_toBottomOf="@id/tv_Productname"
+                card_view:layout_constraintStart_toStartOf="@+id/remove_img" />
 
             <ImageView
                 android:id="@+id/add_img"
@@ -74,12 +75,13 @@
                 android:src="@drawable/add"
                 app:layout_editor_absoluteX="258dp"
                 card_view:layout_constraintBottom_toBottomOf="@+id/remove_img"
+                card_view:layout_constraintStart_toEndOf="@+id/tv_qunt"
                 card_view:layout_constraintTop_toTopOf="@+id/remove_img" />
 
-            <TextView
+            <EditText
                 android:id="@+id/tv_qunt"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_width="45dp"
+                android:layout_height="50dp"
                 android:layout_weight="1"
                 android:text="Total"
                 android:textAlignment="center"
@@ -87,6 +89,7 @@
                 android:textSize="13dp"
                 card_view:layout_constraintBottom_toBottomOf="@+id/remove_img"
                 card_view:layout_constraintEnd_toStartOf="@+id/remove_img"
+
                 card_view:layout_constraintStart_toEndOf="@+id/add_img"
                 card_view:layout_constraintTop_toTopOf="@+id/remove_img" />
 
@@ -94,8 +97,8 @@
                 android:id="@+id/remove_img"
                 android:layout_width="40dp"
                 android:layout_height="20dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginEnd="100dp"
+                android:layout_marginBottom="12dp"
                 android:src="@drawable/remove"
                 card_view:layout_constraintBottom_toBottomOf="parent"
                 card_view:layout_constraintEnd_toEndOf="parent" />
@@ -106,12 +109,25 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_weight="1"
-                android:text="Rate"
+                android:text=""
                 android:textAlignment="center"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textSize="13dp"
                 card_view:layout_constraintStart_toStartOf="@+id/tv_Productname"
                 card_view:layout_constraintTop_toBottomOf="@+id/tv_Productname" />
+
+            <TextView
+                android:id="@+id/tv_price"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="50"
+                android:text=""
+                android:textAlignment="center"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="13dp"
+                card_view:layout_constraintEnd_toStartOf="@+id/remove_img"
+                card_view:layout_constraintLeft_toRightOf="@id/item_photo"
+                card_view:layout_constraintTop_toBottomOf="@id/tv_Productname" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
