@@ -1,6 +1,8 @@
 package com.amani.hsabi.Adaptors;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.amani.hsabi.R;
@@ -18,10 +21,15 @@ import com.amani.hsabi.models.Product;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> {
+    public static List<Product> selecteditems;
+    int count;
+    // private final CartFragment fragment;
     private Context mContext;
-    int count = 1;
     private ArrayList<Product> mCart;
 
     public CartAdapter() {
@@ -38,12 +46,12 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
         notifyDataSetChanged();
     }
 
-
     @NonNull
     @Override
     public CartAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         mContext = parent.getContext();
         View listItemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_cart, parent, false);
+
 
         return new MyViewHolder(listItemView);
     }
@@ -57,11 +65,17 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
         holder.tvproductname.setText(product.getpName());
         holder.tvproductsize.setText(product.getpSize());
         holder.tvquntity.setText(count + "");
-        final double a = Double.parseDouble(product.getpPrice());
+        final int a = (product.getpPrice());
 
-        double price = count * a;
+        int price = (count * a);
+
         holder.edPrice.setText((int) price + " OMR");
 
+        SharedPreferences editorPrefernce = mContext.getSharedPreferences("total", MODE_PRIVATE);
+        SharedPreferences.Editor editor = editorPrefernce.edit();
+
+        SharedPreferences.Editor editor1 = editor.putInt("qunt", count);// or add toString() after if needed
+        editor.apply();
 
     }
 
@@ -100,6 +114,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
             ivaddImage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
                     count++;
                     tvquntity.setText(String.valueOf(count));
 
@@ -115,16 +130,40 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
             ivcancelImage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    DB_SQLlite db = new DB_SQLlite(mContext);
+                    try {
+                        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(mContext);
+                        alertDialogBuilder.setMessage("Are you sure,You wanted to Remove?\n");
+                        alertDialogBuilder.setCancelable(false);
+                        AlertDialog.Builder yes = alertDialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface arg0, int arg1) {
+                                DB_SQLlite db = new DB_SQLlite(mContext);
 
-                    db.delete(getItemCount());
-                    mCart.remove(getAdapterPosition());
-                    notifyDataSetChanged();
+                                db.delete(getItemCount());
+                                mCart.remove(getAdapterPosition());
+                                notifyDataSetChanged();
+                                notifyItemRemoved(getAdapterPosition());
+                                Toast.makeText(mContext, "Product deleted!", Toast.LENGTH_SHORT).show();
 
-                    Toast.makeText(mContext, "Product deleted!", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                        alertDialogBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
 
+                            }
+                        });
+                        AlertDialog alertDialog = alertDialogBuilder.create();
+                        alertDialog.show();
+                    } catch (Exception e) {
+
+                    }
 
                 }
+
+
+
+
             });
 
 

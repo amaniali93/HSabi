@@ -13,18 +13,19 @@
         android:id="@+id/tv_subtitle"
         android:layout_width="200dp"
         android:layout_height="76dp"
-        android:layout_marginBottom="428dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="490dp"
         android:fontFamily="@font/berkshire_swash"
         android:text="@string/login"
         android:textSize="45dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/edt_email" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/edt_email"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_marginEnd="72dp"
+        android:layout_width="327dp"
+        android:layout_height="54dp"
         android:layout_marginBottom="44dp"
         android:drawableStart="@drawable/person"
         android:drawablePadding="5dp"
@@ -33,14 +34,15 @@
         android:padding="15dp"
         android:text="a.mooon8893@gmail.com"
         android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@id/edt_password"
         app:layout_constraintBottom_toTopOf="@+id/edt_password"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/edt_password"
         android:layout_width="327dp"
         android:layout_height="52dp"
-        android:layout_marginEnd="44dp"
         android:layout_marginBottom="128dp"
         android:drawableStart="@drawable/password"
         android:drawablePadding="5dp"
@@ -49,15 +51,16 @@
         android:padding="15dp"
         android:text="12345678"
         android:textSize="15sp"
-        app:layout_constraintBottom_toTopOf="@+id/register"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintBottom_toTopOf="@id/btnd_login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btnd_login"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginEnd="35dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
         android:layout_marginBottom="184dp"
         android:background="#BBBBBB"
         android:text="@string/login"
@@ -65,9 +68,9 @@
         android:textColor="@android:color/white"
         android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/register"
+        app:layout_constraintEnd_toEndOf="parent"
 
-        app:layout_constraintStart_toStartOf="@+id/edt_email" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/register"

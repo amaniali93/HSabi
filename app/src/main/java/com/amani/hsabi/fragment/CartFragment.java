@@ -28,7 +28,7 @@ public class CartFragment extends Fragment {
     RecyclerView recyclerView;
     Button totalbill;
     private Context mContext;
-    private CartAdapter mAdapter;
+    CartAdapter mAdapter;
 
     public CartFragment() {
         // Required empty public constructor
@@ -72,7 +72,22 @@ public class CartFragment extends Fragment {
         recyclerView.setAdapter(mAdapter);
 
         totalbill = parentView.findViewById(R.id.btn_placeorder);
-
+        calculateTotal();
         return parentView;
+
+    }
+
+    public void calculateTotal() {
+        // SharedPreferences prefs = mContext.getSharedPreferences("total",MODE_PRIVATE);
+        // int loadedString = prefs.getInt("qunt", Integer.parseInt("null"));
+        // txt_2.setText(loadedString);
+        int i = 0;
+        int total = 0;
+
+       /* while(i<mAdapter.selecteditems.size()){
+          //  total=total + ( Integer.valueOf(mAdapter.selecteditems.get(i).getpPrice()) * Integer.valueOf(mAdapter.selecteditems.get(i).loadedString));
+            i++;
+        }*/
+        totalprice.setText("OMR" + total);
     }
 }

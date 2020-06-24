@@ -74,7 +74,7 @@ public class DB_SQLlite extends SQLiteOpenHelper {
                 Product p = new Product();
                 String t0 = res.getString(0);
                 String t1 = res.getString(1);
-                String t2 = res.getString(2);
+                int t2 = res.getInt(2);
                 String t3 = res.getString(3);
                 String t4 = res.getString(4);
                 String t5 = res.getString(5);

@@ -8,10 +8,22 @@ public class Product implements Serializable {
 
     private String pId;
     private String pBarcodeNumber;
-    private String pPrice;
+    private int pPrice;
     private String pName;
     private String pSize;
     private String pImg;
+    private String qunt;
+
+    public Product() {
+    }
+
+    public String getQunt() {
+        return qunt;
+    }
+
+    public void setQunt(String qunt) {
+        this.qunt = qunt;
+    }
 
     public void setProduct(Product value) {
     }
@@ -34,11 +46,11 @@ public class Product implements Serializable {
         this.pBarcodeNumber = pBarcodeNumber;
     }
 
-    public String getpPrice() {
+    public int getpPrice() {
         return pPrice;
     }
 
-    public void setpPrice(String pPrice) {
+    public void setpPrice(int pPrice) {
         this.pPrice = pPrice;
     }
 

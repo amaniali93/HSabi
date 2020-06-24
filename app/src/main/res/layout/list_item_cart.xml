@@ -83,13 +83,14 @@
                 android:layout_width="45dp"
                 android:layout_height="50dp"
                 android:layout_weight="1"
+                android:inputType="numberSigned|numberDecimal"
                 android:text="Total"
                 android:textAlignment="center"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textSize="13dp"
                 card_view:layout_constraintBottom_toBottomOf="@+id/remove_img"
-                card_view:layout_constraintEnd_toStartOf="@+id/remove_img"
 
+                card_view:layout_constraintEnd_toStartOf="@+id/remove_img"
                 card_view:layout_constraintStart_toEndOf="@+id/add_img"
                 card_view:layout_constraintTop_toTopOf="@+id/remove_img" />
 
