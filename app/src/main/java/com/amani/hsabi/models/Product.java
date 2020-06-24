@@ -12,16 +12,17 @@ public class Product implements Serializable {
     private String pName;
     private String pSize;
     private String pImg;
-    private String qunt;
+    private int qunt;
 
     public Product() {
+        qunt = 1;
     }
 
-    public String getQunt() {
+    public int getQunt() {
         return qunt;
     }
 
-    public void setQunt(String qunt) {
+    public void setQunt(int qunt) {
         this.qunt = qunt;
     }
 

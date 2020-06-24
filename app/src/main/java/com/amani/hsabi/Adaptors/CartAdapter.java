@@ -2,7 +2,6 @@ package com.amani.hsabi.Adaptors;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,14 +22,13 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 import java.util.List;
 
-import static android.content.Context.MODE_PRIVATE;
-
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> {
     public static List<Product> selecteditems;
-    int count;
+
     // private final CartFragment fragment;
     private Context mContext;
     private ArrayList<Product> mCart;
+    private CartListener mListener;
 
     public CartAdapter() {
         mCart = new ArrayList<>();
@@ -58,24 +56,48 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
 
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
 
-        Product product = mCart.get(position);
+        final Product product = mCart.get(position);
         Glide.with(mContext).load(product.getpImg()).into(holder.ivproductImage);
         holder.tvproductname.setText(product.getpName());
         holder.tvproductsize.setText(product.getpSize());
-        holder.tvquntity.setText(count + "");
+        holder.tvquntity.setText(product.getQunt() + "");
         final int a = (product.getpPrice());
 
-        int price = (count * a);
+        int price = (product.getQunt() * a);
 
         holder.edPrice.setText((int) price + " OMR");
 
-        SharedPreferences editorPrefernce = mContext.getSharedPreferences("total", MODE_PRIVATE);
-        SharedPreferences.Editor editor = editorPrefernce.edit();
+        holder.ivaddImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int r = product.getQunt() + 1;
+                product.setQunt(r);
+                holder.tvquntity.setText(String.valueOf(r));
+                int price = (product.getQunt() * a);
+                holder.edPrice.setText((int) price + " OMR");
+                if (mListener != null) {
+                    mListener.onDataChange(mCart);
+                }
+            }
+        });
+        holder.ivremoveImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (product.getQunt() > 1) {
+                    int r = product.getQunt() - 1;
+                    product.setQunt(r);
+                    holder.tvquntity.setText(String.valueOf(r));
+                    int price = (product.getQunt() * a);
+                    holder.edPrice.setText((int) price + " OMR");
+                    if (mListener != null) {
+                        mListener.onDataChange(mCart);
+                    }
+                }
+            }
+        });
 
-        SharedPreferences.Editor editor1 = editor.putInt("qunt", count);// or add toString() after if needed
-        editor.apply();
 
     }
 
@@ -85,6 +107,14 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
         return mCart.size();
     }
 
+
+    public void setupCartListener(CartListener cartListener) {
+        mListener = cartListener;
+    }
+
+    public interface CartListener {
+        void onDataChange(ArrayList<Product> newProductsArrayList);
+    }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
@@ -109,24 +139,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
             edPrice = itemView.findViewById(R.id.tv_price);
 
 
-
-
-            ivaddImage.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                    count++;
-                    tvquntity.setText(String.valueOf(count));
-
-                }
-            });
-            ivremoveImage.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    count--;
-                    tvquntity.setText(String.valueOf(count));
-                }
-            });
             ivcancelImage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -162,13 +174,13 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
                 }
 
 
-
-
             });
 
 
         }
 
     }
+
+
 }
 

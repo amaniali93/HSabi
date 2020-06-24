@@ -19,10 +19,13 @@ import com.amani.hsabi.Adaptors.CartAdapter;
 import com.amani.hsabi.Interfaces.MediaInterface;
 import com.amani.hsabi.R;
 import com.amani.hsabi.activites.DB_SQLlite;
+import com.amani.hsabi.models.Product;
+
+import java.util.ArrayList;
 //import com.amani.hsabi.activites.DB_SQLlite;
 
 
-public class CartFragment extends Fragment {
+public class CartFragment extends Fragment implements CartAdapter.CartListener {
     // TODO: Rename parameter arguments, choose names that match
     TextView totalprice;
     RecyclerView recyclerView;
@@ -69,25 +72,26 @@ public class CartFragment extends Fragment {
         mAdapter = new CartAdapter();
         DB_SQLlite db = new DB_SQLlite(mContext);
         mAdapter.update(db.getProducts());
+        mAdapter.setupCartListener(this);
         recyclerView.setAdapter(mAdapter);
-
+        onDataChange(db.getProducts());
         totalbill = parentView.findViewById(R.id.btn_placeorder);
-        calculateTotal();
+
         return parentView;
 
     }
 
-    public void calculateTotal() {
-        // SharedPreferences prefs = mContext.getSharedPreferences("total",MODE_PRIVATE);
-        // int loadedString = prefs.getInt("qunt", Integer.parseInt("null"));
+    public void calculateTotal(int totalPrice) {
+        totalprice.setText(totalPrice + " OMR");
+    }
 
-        int i = 0;
-        int total = 0;
+    @Override
+    public void onDataChange(ArrayList<Product> newProductsArrayList) {
+        int totalPrice = 0;
+        for (Product p : newProductsArrayList) {
+            totalPrice += p.getpPrice() * p.getQunt();
+        }
 
-       /* while(i<mAdapter.selecteditems.size()){
-          //  total=total + ( Integer.valueOf(mAdapter.selecteditems.get(i).getpPrice()) * Integer.valueOf(mAdapter.selecteditems.get(i).loadedString));
-            i++;
-        }*/
-        totalprice.setText("OMR" + total);
+        calculateTotal(totalPrice);
     }
 }
