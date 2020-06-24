@@ -29,6 +29,8 @@ public class BillFragment extends Fragment {
     TextView date;
     private Context mContext;
     private int mPriceTotal;
+
+
     public BillFragment() {
 
     }
