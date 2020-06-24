@@ -80,7 +80,7 @@ public class CartFragment extends Fragment {
     public void calculateTotal() {
         // SharedPreferences prefs = mContext.getSharedPreferences("total",MODE_PRIVATE);
         // int loadedString = prefs.getInt("qunt", Integer.parseInt("null"));
-        // txt_2.setText(loadedString);
+
         int i = 0;
         int total = 0;
 
