@@ -77,12 +77,32 @@ public class CartFragment extends Fragment implements CartAdapter.CartListener {
         onDataChange(db.getProducts());
         totalbill = parentView.findViewById(R.id.btn_placeorder);
 
+        totalbill.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //   if (mListener != null) {
+
+
+                BillFragment frag = new BillFragment();
+                int priceTotal = Integer.parseInt(String.valueOf(totalprice));
+                frag.setPricetotal(priceTotal);
+
+                mListener.changeFragmentTo(frag, BillFragment.class.getSimpleName());
+                //  Bundle i = new Bundle();
+                //  i.putInt("total",priceTotal);
+
+            }
+
+            //  FragmentManager fragmentManager=getFragmentManager();
+            //}
+        });
         return parentView;
 
     }
 
     public void calculateTotal(int totalPrice) {
         totalprice.setText(totalPrice + " OMR");
+
     }
 
     @Override

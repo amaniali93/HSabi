@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,8 +16,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.amani.hsabi.activites.BarCodeScan;
 import com.amani.hsabi.R;
+import com.amani.hsabi.activites.BarCodeScan;
+import com.amani.hsabi.activites.DB_SQLlite;
 import com.amani.hsabi.activites.FunctionActivity;
 import com.amani.hsabi.models.MyContats;
 import com.amani.hsabi.models.Product;
@@ -97,7 +97,20 @@ public class ScanFragment extends Fragment {
                                         @Override
                                         public void onClick(DialogInterface dialog, int id) {
                                             //Action for "yes"
+                                            DB_SQLlite db = new DB_SQLlite(getContext());
+                                            int result = db.addProduct(value);
+                                            if (result == -1) {
+                                                Toast.makeText(getContext(), "Error happened while storing item!", Toast.LENGTH_SHORT).show();
 
+                                            } else if (result == 0) {
+                                                Toast.makeText(getContext(), "This Product is already in cart!", Toast.LENGTH_SHORT).show();
+
+                                            } else {
+                                                Toast.makeText(getContext(), "added successfully!!", Toast.LENGTH_SHORT).show();
+                                                Intent intentdone = new Intent(getContext(), FunctionActivity.class);
+                                                intentdone.putExtra(MyContats.KEY_SCANNED_PRODUCT, value);
+                                                startActivity(intentdone);
+                                            }
                                             Intent intent = new Intent(getContext(), FunctionActivity.class);
 
                                             intent.putExtra(MyContats.KEY_SCANNED_PRODUCT, value);

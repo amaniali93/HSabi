@@ -10,7 +10,21 @@
         android:layout_width="350dp"
         android:layout_height="350dp"
         android:layout_gravity="center"
-        android:src="@drawable/barcode" />
+        android:id="@+id/barcode_img" />
+
+    <TextView
+        android:id="@+id/tv_date"
+        android:layout_width="250dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="100dp" />
+
+    <TextView
+        android:id="@+id/totalbill_tv"
+        android:layout_width="99dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="550dp" />
 
     <TextView
         android:layout_width="200dp"

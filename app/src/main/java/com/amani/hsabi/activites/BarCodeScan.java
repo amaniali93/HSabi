@@ -121,16 +121,7 @@ public class BarCodeScan extends AppCompatActivity implements ZXingScannerView.R
         dialog.setPositiveButton("yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int id) {
-                //Action for "yes"
-               /* SharedPreferences editorPrefernce =  getApplicationContext().getSharedPreferences("Product",MODE_PRIVATE);
-                SharedPreferences.Editor editor = editorPrefernce.edit();
-                editor.putString("pId",value.getpId());
-                editor.putString("PbarcodeNo",value.getpBarcodeNumber());
-                editor.putString("pName" , value.getpName());
-                editor.putString("pImg" , value.getpImg());
-                editor.putString("pPrice" , value.getpPrice());
-                editor.putString("pSize" , value.getpSize());
-                editor.apply();*/
+
                 DB_SQLlite db = new DB_SQLlite(BarCodeScan.this);
                 int result = db.addProduct(value);
                 if (result == -1) {
@@ -141,9 +132,9 @@ public class BarCodeScan extends AppCompatActivity implements ZXingScannerView.R
                     onBackPressed();
                 } else {
                     Toast.makeText(BarCodeScan.this, "added successfully!!", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(BarCodeScan.this, FunctionActivity.class);
-                    intent.putExtra(MyContats.KEY_SCANNED_PRODUCT, value);
-                    startActivity(intent);
+                    Intent intentdone = new Intent(BarCodeScan.this, FunctionActivity.class);
+                    intentdone.putExtra(MyContats.KEY_SCANNED_PRODUCT, value);
+                    startActivity(intentdone);
                 }
 
 
