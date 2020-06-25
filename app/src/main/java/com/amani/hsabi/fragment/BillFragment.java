@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,11 +26,11 @@ import java.util.Locale;
 
 public class BillFragment extends Fragment {
     TextView tvtotal;
-    ImageView imgBarcode;
+
     TextView date;
     private Context mContext;
     private int mPriceTotal;
-    private View view;
+
 
     public BillFragment() {
 
@@ -49,9 +50,9 @@ public class BillFragment extends Fragment {
         final View parentView = inflater.inflate(R.layout.fragment_bill, container, false);
         tvtotal = parentView.findViewById(R.id.totalbill_tv);
         date = parentView.findViewById(R.id.tv_date);
-        imgBarcode = parentView.findViewById(R.id.barcode_img);
-        tvtotal.setText(mPriceTotal);
-        barcodegenerat(view);
+        ImageView imgBarcode = parentView.findViewById(R.id.barcode_img);
+        tvtotal.setText(mPriceTotal + "");
+        startGenerateBarcode(imgBarcode);
         String date_n = new SimpleDateFormat("MM dd, yyyy", Locale.getDefault()).format(new Date());
         date.setText(date_n);
         return parentView;
@@ -61,7 +62,22 @@ public class BillFragment extends Fragment {
         mPriceTotal = pricetotal;
     }
 
-    public void barcodegenerat(View view) {
+
+    public void startGenerateBarcode(final ImageView imgBarcode) {
+
+        imgBarcode.post(new Runnable() {
+            @Override
+            public void run() {
+                generateBarcode(imgBarcode);
+            }
+        });
+
+
+    }
+
+    private void generateBarcode(ImageView imgBarcode) {
+        Log.d("imgV-size", imgBarcode.getWidth() + "," + imgBarcode.getHeight());
+
         MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
         try {
             BitMatrix bitMatrix = multiFormatWriter.encode(tvtotal.getText().toString(), BarcodeFormat.CODE_128, imgBarcode.getWidth(), imgBarcode.getHeight());
@@ -74,6 +90,5 @@ public class BillFragment extends Fragment {
         } catch (WriterException e) {
             e.printStackTrace();
         }
-
     }
 }
