@@ -57,6 +57,7 @@ public class HistoryFragment extends Fragment {
         setupRecyclerView(recyclerView);
         mAdapter = new HistoryAdapter();
         DB_SQLlite db = new DB_SQLlite(mContext);
+
         // mAdapter.update(db.getlastBill());
 
         recyclerView.setAdapter(mAdapter);
