@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 
 import com.amani.hsabi.R;
 import com.amani.hsabi.models.Billinfo;
+import com.amani.hsabi.models.Product;
 import com.bumptech.glide.Glide;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -79,10 +80,9 @@ public class BillFragment extends Fragment {
             @Override
             public void run() {
                 try {
-                    //this is the info which will be display after scanning the QR code
-                    String infoToDisplay = "A\nB\nD\nC\nD\nF\nd\nd A\nB\nD\nC\nD\nF\nd\nd";
 
-                    generateQRCode(imgBarcode, infoToDisplay);
+
+                    generateQRCode(imgBarcode, getInfoToDisplay());
                 } catch (WriterException e) {
                     e.printStackTrace();
                 }
@@ -90,6 +90,21 @@ public class BillFragment extends Fragment {
         });
 
 
+    }
+
+    /*
+    this is the info which will be display after scanning the QR code
+     */
+    private String getInfoToDisplay() {
+        StringBuilder builder = new StringBuilder();
+        int index = 1;
+        for (Product product : mBillInfo.getProducts()) {
+            builder.append(index + ". " + product.getpName() + " | cont.<" + product.getQunt() + "> | price:" + product.getpPrice() + "\n\n");
+            index++;
+        }
+        builder.append("\n total : " + mBillInfo.getbPrice() + " OMR");
+
+        return builder.toString();
     }
 
 

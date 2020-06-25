@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,14 +34,17 @@ public class ScanFragment extends Fragment {
     public static TextView resulttextview;
     Button scanbtn, btnenterNumber;
     TextView barcodeNomber;
+    private Context mContext;
 
     public ScanFragment() {
         // Required empty public constructor
     }
 
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+        mContext = context;
     }
 
     @Override
@@ -51,7 +55,7 @@ public class ScanFragment extends Fragment {
         barcodeNomber = parentView.findViewById(R.id.tv_no_barcode);
         btnenterNumber = parentView.findViewById(R.id.btn_no_barcode);
         scanbtn = parentView.findViewById(R.id.btn_Scan);
-
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         scanbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,14 +70,15 @@ public class ScanFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 final String barcodeNo = barcodeNomber.getText().toString();
-                if(barcodeNo.isEmpty()){
+                if (barcodeNo.isEmpty()) {
                     barcodeNomber.setError("Number is not found");
                     barcodeNomber.requestFocus();
-                }else{
+                } else {
                     FirebaseDatabase database = FirebaseDatabase.getInstance();
                     DatabaseReference myRef = database.getReference(MyContats.FB_KEY_PRODUCTS);
                     Log.d("readResult", "onDataChange()");
                     myRef.addValueEventListener(new ValueEventListener() {
+                        boolean notFound = true;
 
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -83,6 +88,7 @@ public class ScanFragment extends Fragment {
 
                                 Log.d("BarCode", "Value is: " + value);
                                 if (barcodeNo.equals(value.getpBarcodeNumber())) {
+                                    notFound = false;
                                     // here write the code you want
                                     AlertDialog.Builder dialog = new AlertDialog.Builder(getContext());
                                     dialog.setCancelable(false);
@@ -130,9 +136,10 @@ public class ScanFragment extends Fragment {
                                     alert.show();
 
                                     break;
-                                }else {
-
-                                    Toast.makeText(getContext(), "Sorry, Product is not available!!", Toast.LENGTH_SHORT).show();                                }
+                                }
+                            }
+                            if (notFound) {
+                                Toast.makeText(getContext(), "Sorry, Product is not available!!", Toast.LENGTH_SHORT).show();
                             }
                         }
 
