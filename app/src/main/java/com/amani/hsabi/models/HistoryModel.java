@@ -1,13 +1,7 @@
 package com.amani.hsabi.models;
 
 public class HistoryModel {
-    public int getBarcodeImage() {
-        return barcodeImage;
-    }
 
-    public void setBarcodeImage(int barcodeImage) {
-        this.barcodeImage = barcodeImage;
-    }
 
     public String getBillNumber() {
         return billNumber;
@@ -33,7 +27,6 @@ public class HistoryModel {
         this.billPrice = billPrice;
     }
 
-    private int barcodeImage;
     private String billNumber;
     private String billDate;
     private String billPrice;

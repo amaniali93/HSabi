@@ -8,6 +8,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import com.amani.hsabi.models.Billinfo;
+import com.amani.hsabi.models.HistoryModel;
 import com.amani.hsabi.models.Product;
 
 import java.util.ArrayList;
@@ -24,6 +26,7 @@ public class DB_SQLlite extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create table scan_Product (pId TEXT PRIMARY KEY, pBarcodeNumber TEXT ,pPrice TEXT , pName TEXT ,pSize TEXT, pImg TEXT)");
+        db.execSQL("create table billTable(bId TEXT PRIMARY KEY ,bPrice TEXT ,bDate)");
     }
 
     @Override
@@ -49,6 +52,16 @@ public class DB_SQLlite extends SQLiteOpenHelper {
         } else {
             return 0;
         }
+    }
+
+    public void addBill(Billinfo billObj) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv1 = new ContentValues();
+        cv1.put("bPrice", billObj.getbPrice());
+        cv1.put("bDate", billObj.getbDate());
+        db.insert("billTable", null, cv1);
+        db.close();
     }
 
     private boolean isNewItem(String pId) {
@@ -92,6 +105,27 @@ public class DB_SQLlite extends SQLiteOpenHelper {
         return products;
     }
 
+    public ArrayList<HistoryModel> getlastBill() {
+        ArrayList<Billinfo> Billinfo = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res = db.rawQuery("select* from billTable", null);
+        if (res.moveToFirst()) {
+            do {
+                Billinfo p = new Billinfo();
+                String id = res.getString(0);
+                String price = res.getString(1);
+                String date = res.getString(2);
+
+                p.setbId(id);
+                p.setbPrice(price);
+                p.setbDate(date);
+
+                Billinfo.add(p);
+
+            } while (res.moveToNext());
+        }
+        return Billinfo;
+    }
     public void delete(int productId) {
         // delete * from table where id = 1
         SQLiteDatabase db = getWritableDatabase();

@@ -19,9 +19,13 @@ import com.amani.hsabi.Adaptors.CartAdapter;
 import com.amani.hsabi.Interfaces.MediaInterface;
 import com.amani.hsabi.R;
 import com.amani.hsabi.activites.DB_SQLlite;
+import com.amani.hsabi.models.Billinfo;
 import com.amani.hsabi.models.Product;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 //import com.amani.hsabi.activites.DB_SQLlite;
 
 
@@ -32,6 +36,7 @@ public class CartFragment extends Fragment implements CartAdapter.CartListener {
     Button totalbill;
     private Context mContext;
     CartAdapter mAdapter;
+
 
     public CartFragment() {
         // Required empty public constructor
@@ -88,9 +93,10 @@ public class CartFragment extends Fragment implements CartAdapter.CartListener {
                 frag.setPricetotal(priceTotal);
 
                 mListener.changeFragmentTo(frag, BillFragment.class.getSimpleName());
-                //  Bundle i = new Bundle();
-                //  i.putInt("total",priceTotal);
-
+                String date_n = new SimpleDateFormat("MM dd, yyyy", Locale.getDefault()).format(new Date());
+                DB_SQLlite db = new DB_SQLlite(mContext);
+                Billinfo billObj = new Billinfo(totalprice.getText().toString(), date_n);
+                db.addBill(billObj);
             }
 
             //  FragmentManager fragmentManager=getFragmentManager();
