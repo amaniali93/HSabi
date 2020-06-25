@@ -1,6 +1,6 @@
 package com.amani.hsabi.models;
 
-public class HistoryModel {
+public class HistoryModel extends Billinfo {
 
 
     public String getBillNumber() {

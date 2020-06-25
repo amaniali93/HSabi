@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.amani.hsabi.R;
+import com.amani.hsabi.models.Billinfo;
 import com.amani.hsabi.models.HistoryModel;
 
 import java.util.ArrayList;
@@ -47,10 +48,10 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.MyViewHo
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
-        HistoryModel History = mHistory.get(position);
-        holder.billDate.setText(History.getBillDate());
-        holder.billNumber.setText(History.getBillNumber());
-        holder.billPrice.setText(History.getBillPrice());
+        Billinfo History = mHistory.get(position);
+        holder.billDate.setText(History.getbDate());
+        holder.billNumber.setText(History.getbId());
+        holder.billPrice.setText(History.getbPrice());
 
     }
 
