@@ -27,14 +27,6 @@ public class HistoryFragment extends Fragment {
         // Required empty public constructor
     }
 
-
-    public static HistoryFragment newInstance(String param1, String param2) {
-        HistoryFragment fragment = new HistoryFragment();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
     public void onStart() {
         super.onStart();
@@ -54,13 +46,6 @@ public class HistoryFragment extends Fragment {
         recyclerView.addItemDecoration(divider);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-    }
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-
-        }
     }
 
     @Override
