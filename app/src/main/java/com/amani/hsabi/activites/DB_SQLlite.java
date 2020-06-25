@@ -9,7 +9,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
 
 import com.amani.hsabi.models.Billinfo;
-import com.amani.hsabi.models.HistoryModel;
 import com.amani.hsabi.models.Product;
 
 import java.util.ArrayList;
@@ -105,7 +104,7 @@ public class DB_SQLlite extends SQLiteOpenHelper {
         return products;
     }
 
-    public ArrayList<HistoryModel> getlastBill() {
+    public ArrayList<Billinfo> getlastBill() {
         ArrayList<Billinfo> Billinfo = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor res = db.rawQuery("select* from billTable", null);

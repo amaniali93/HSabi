@@ -18,7 +18,7 @@ import com.amani.hsabi.R;
 import com.amani.hsabi.activites.DB_SQLlite;
 
 
-public class HistoryFragment extends Fragment implements HistoryAdapter {
+public class HistoryFragment extends Fragment {
 
     RecyclerView recyclerView;
     private Context mContext;
@@ -72,7 +72,7 @@ public class HistoryFragment extends Fragment implements HistoryAdapter {
         setupRecyclerView(recyclerView);
         mAdapter = new HistoryAdapter();
         DB_SQLlite db = new DB_SQLlite(mContext);
-        mAdapter.update(db.getlastBill());
+        // mAdapter.update(db.getlastBill());
 
         recyclerView.setAdapter(mAdapter);
 
