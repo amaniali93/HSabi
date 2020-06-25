@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.amani.hsabi.Adaptors.CartAdapter;
-import com.amani.hsabi.Interfaces.MediaInterface;
+import com.amani.hsabi.Interfaces.MediatorInterface;
 import com.amani.hsabi.R;
 import com.amani.hsabi.activites.DB_SQLlite;
 import com.amani.hsabi.models.Billinfo;
@@ -36,13 +36,15 @@ public class CartFragment extends Fragment implements CartAdapter.CartListener {
     Button totalbill;
     private Context mContext;
     CartAdapter mAdapter;
+    private int mTotalPrice;
+    private OnBillRequestListener mListener;
 
 
     public CartFragment() {
         // Required empty public constructor
     }
 
-    private MediaInterface mListener;
+    private MediatorInterface MediatorInterface;
 
     @Override
     public void onStart() {
@@ -53,6 +55,7 @@ public class CartFragment extends Fragment implements CartAdapter.CartListener {
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         mContext = context;
+        mListener = (OnBillRequestListener) context;
     }
 
     private void setupRecyclerView(RecyclerView recyclerView) {
@@ -88,15 +91,16 @@ public class CartFragment extends Fragment implements CartAdapter.CartListener {
                 //   if (mListener != null) {
 
 
-                BillFragment frag = new BillFragment();
-                int priceTotal = Integer.parseInt(String.valueOf(totalprice));
-                frag.setPricetotal(priceTotal);
-
-                mListener.changeFragmentTo(frag, BillFragment.class.getSimpleName());
                 String date_n = new SimpleDateFormat("MM dd, yyyy", Locale.getDefault()).format(new Date());
                 DB_SQLlite db = new DB_SQLlite(mContext);
                 Billinfo billObj = new Billinfo(totalprice.getText().toString(), date_n);
                 db.addBill(billObj);
+
+                if (mListener != null) {
+                    mListener.onBillRequest(mAdapter.getProducts(), mTotalPrice);
+                }
+
+
             }
 
             //  FragmentManager fragmentManager=getFragmentManager();
@@ -108,6 +112,7 @@ public class CartFragment extends Fragment implements CartAdapter.CartListener {
 
     public void calculateTotal(int totalPrice) {
         totalprice.setText(totalPrice + " OMR");
+        mTotalPrice = totalPrice;
 
     }
 
@@ -120,4 +125,11 @@ public class CartFragment extends Fragment implements CartAdapter.CartListener {
 
         calculateTotal(totalPrice);
     }
+
+
+    public interface OnBillRequestListener {
+        void onBillRequest(ArrayList<Product> products, int totalPrice);
+    }
+
+
 }

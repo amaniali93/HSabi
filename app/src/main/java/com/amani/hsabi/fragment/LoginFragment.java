@@ -14,9 +14,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.amani.hsabi.activites.FunctionActivity;
-import com.amani.hsabi.Interfaces.MediaInterface;
+import com.amani.hsabi.Interfaces.MediatorInterface;
 import com.amani.hsabi.R;
+import com.amani.hsabi.activites.FunctionActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -35,7 +35,7 @@ public class LoginFragment extends Fragment {
         // Required empty public constructor
     }
 
-    private MediaInterface mListener;
+    private MediatorInterface mListener;
 
 
     @Override
@@ -47,8 +47,8 @@ public class LoginFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof MediaInterface) {
-            mListener = (MediaInterface) context;
+        if (context instanceof MediatorInterface) {
+            mListener = (MediatorInterface) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement MediatorInterface");

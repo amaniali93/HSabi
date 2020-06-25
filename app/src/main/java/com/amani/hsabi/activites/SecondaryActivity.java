@@ -9,17 +9,30 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.amani.hsabi.Interfaces.MediatorInterface;
 import com.amani.hsabi.R;
-import com.amani.hsabi.fragment.LoginFragment;
+import com.amani.hsabi.fragment.BillFragment;
+import com.amani.hsabi.models.Billinfo;
+import com.amani.hsabi.models.MyContats;
 
-public class MainActivity extends AppCompatActivity implements MediatorInterface {
+import static com.amani.hsabi.models.MyContats.FRAGMENT_BILL_FRAGMENT;
+import static com.amani.hsabi.models.MyContats.KEY_FRAGMENT_TO_LOAD;
+
+public class SecondaryActivity extends AppCompatActivity implements MediatorInterface {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        changeFragmentTo(new LoginFragment(), LoginFragment.class.getSimpleName());
-    }
+        setContentView(R.layout.activity_scondary);
 
+        if (getIntent() != null) {
+
+            if (FRAGMENT_BILL_FRAGMENT.equals(getIntent().getStringExtra(KEY_FRAGMENT_TO_LOAD))) {
+                Billinfo billinfo = (Billinfo) getIntent().getSerializableExtra(MyContats.DATA_TO_PASS);
+                BillFragment fragment = new BillFragment();
+                fragment.setBill(billinfo);
+                changeFragmentTo(fragment, BillFragment.class.getSimpleName());
+            }
+        }
+    }
 
     @Override
     public void changeFragmentTo(Fragment fragmentToDisplay, String tag) {
@@ -50,6 +63,4 @@ public class MainActivity extends AppCompatActivity implements MediatorInterface
         }
 
     }
-
-
 }

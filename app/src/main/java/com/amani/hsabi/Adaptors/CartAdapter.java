@@ -112,6 +112,10 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
         mListener = cartListener;
     }
 
+    public ArrayList<Product> getProducts() {
+        return mCart;
+    }
+
     public interface CartListener {
         void onDataChange(ArrayList<Product> newProductsArrayList);
     }

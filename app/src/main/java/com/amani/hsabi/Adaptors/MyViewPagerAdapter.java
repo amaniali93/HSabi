@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-import com.amani.hsabi.fragment.BillFragment;
 import com.amani.hsabi.fragment.CartFragment;
 import com.amani.hsabi.fragment.ScanFragment;
 
@@ -14,11 +13,13 @@ public class MyViewPagerAdapter extends FragmentPagerAdapter {
 
 
 
-    private CharSequence[] tabTitles = {"Scan", "Cart", "Bill"};
+    private CharSequence[] tabTitles = {"Scan", "Cart"};
 
     public MyViewPagerAdapter(@NonNull FragmentManager fm, int behavior) {
         super(fm, behavior);
+
     }
+
 
     //here we select the fragment and specific its index
     @NonNull
@@ -31,8 +32,6 @@ public class MyViewPagerAdapter extends FragmentPagerAdapter {
                 return new ScanFragment();
             case 1:
                 return new CartFragment();
-            case 2:
-                return new BillFragment();
             default:
                 return null;
         }
@@ -51,4 +50,6 @@ public class MyViewPagerAdapter extends FragmentPagerAdapter {
     public CharSequence getPageTitle(int position) {
         return tabTitles[position];
     }
+
+
 }

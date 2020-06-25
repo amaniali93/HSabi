@@ -14,13 +14,12 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.amani.hsabi.Interfaces.MediaInterface;
+import com.amani.hsabi.Interfaces.MediatorInterface;
 import com.amani.hsabi.R;
 import com.amani.hsabi.models.MyContats;
 import com.amani.hsabi.models.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -41,7 +40,7 @@ public class RegisterFragment extends Fragment {
     private FirebaseAuth mAuth; // allow to use auth functions like sign-in, sign-up
     private FirebaseUser mFirebaseUser; // allow to access mFirebaseUser info like userId
     private Context mContext;
-    private MediaInterface mMeditorCallback;
+    private MediatorInterface mMeditorCallback;
 
 
     public RegisterFragment() {
@@ -52,7 +51,7 @@ public class RegisterFragment extends Fragment {
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         mContext = context;
-        mMeditorCallback = (MediaInterface) context;
+        mMeditorCallback = (MediatorInterface) context;
     }
 
     @Override

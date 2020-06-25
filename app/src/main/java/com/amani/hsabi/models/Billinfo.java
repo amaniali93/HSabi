@@ -1,9 +1,13 @@
 package com.amani.hsabi.models;
 
-public class Billinfo {
+import java.io.Serializable;
+import java.util.ArrayList;
+
+public class Billinfo implements Serializable {
     String bId;
     String bPrice;
     String bDate;
+    ArrayList<Product> products;
 
     public Billinfo() {
 
@@ -36,5 +40,13 @@ public class Billinfo {
 
     public void setbDate(String bDate) {
         this.bDate = bDate;
+    }
+
+    public ArrayList<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(ArrayList<Product> products) {
+        this.products = products;
     }
 }
