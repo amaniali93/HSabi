@@ -7,17 +7,18 @@
     tools:context=".activites.FunctionActivity">
 
 
-
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabs"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="#EF6C00"
+        android:background="@color/colorPrimaryDark"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:tabIndicatorColor="#fff"
         app:tabSelectedTextColor="#FFFFFF"
-        app:tabTextColor="#000000">
+        app:tabTextColor="#A6FFCC80">
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/tab_scan"
@@ -29,13 +30,9 @@
             android:id="@+id/tab_cart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/btn_cart"/>
+            android:text="@string/btn_cart" />
 
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/tab_bill"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/b_bill" />
+
     </com.google.android.material.tabs.TabLayout>
 
     <androidx.viewpager.widget.ViewPager

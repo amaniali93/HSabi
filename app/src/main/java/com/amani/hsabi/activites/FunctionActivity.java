@@ -1,6 +1,5 @@
 package com.amani.hsabi.activites;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,11 +13,9 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.amani.hsabi.Adaptors.MyViewPagerAdapter;
-import com.amani.hsabi.Interfaces.MediatorInterface;
 import com.amani.hsabi.R;
 import com.amani.hsabi.fragment.BillFragment;
 import com.amani.hsabi.fragment.CartFragment;
-import com.amani.hsabi.fragment.LoginFragment;
 import com.amani.hsabi.models.Billinfo;
 import com.amani.hsabi.models.MyContats;
 import com.amani.hsabi.models.Product;
@@ -56,8 +53,7 @@ public class FunctionActivity extends AppCompatActivity implements CartFragment.
         return true;
     }
 
-    Context mContext;
-    private MediatorInterface mListener = (MediatorInterface) mContext;
+
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -112,9 +108,11 @@ public class FunctionActivity extends AppCompatActivity implements CartFragment.
 
     public void LogOut() {
         FirebaseAuth.getInstance().signOut();
-        if (mListener != null) {
-            mListener.changeFragmentTo(new LoginFragment(), LoginFragment.class.getSimpleName());
-        }
+
+        Intent i = new Intent(FunctionActivity.this, MainActivity.class);
+        startActivity(i);
+        finish();
+
     }
 
 

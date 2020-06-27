@@ -73,6 +73,8 @@ public class LoginFragment extends Fragment {
                     Toast.makeText(getActivity(), R.string.logged_in, Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(getActivity().getApplication(), FunctionActivity.class);
                     startActivity(i);
+                    getActivity().finish();
+
                 } else {
                     Toast.makeText(getActivity(), R.string.Please_Login, Toast.LENGTH_SHORT).show();
                 }
@@ -97,6 +99,7 @@ public class LoginFragment extends Fragment {
                                     if (task.isSuccessful()) {
                                         Intent intefunction = new Intent(getActivity().getApplication(), FunctionActivity.class);
                                         startActivity(intefunction);
+                                        getActivity().finish();
                                     } else {
                                         Toast.makeText(getActivity(), R.string.Loggin_Error, Toast.LENGTH_SHORT).show();
                                     }
