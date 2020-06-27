@@ -125,11 +125,11 @@ public class DB_SQLlite extends SQLiteOpenHelper {
         }
         return Billinfo;
     }
-    public void delete(int productId) {
+
+    public void delete(String productId) {
         // delete * from table where id = 1
         SQLiteDatabase db = getWritableDatabase();
-
-        db.delete("scan_Product", "pId" + "=" + productId, null);
+        db.delete("scan_Product", "pId" + "='" + productId + "'", null);
         db.close();
     }
 

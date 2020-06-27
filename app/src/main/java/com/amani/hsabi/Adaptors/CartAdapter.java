@@ -99,6 +99,13 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
         });
 
 
+        holder.ivcancelImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDeleteAlertDialog(holder.getAdapterPosition(), product.getpId());
+            }
+        });
+
     }
 
 
@@ -115,6 +122,38 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
     public ArrayList<Product> getProducts() {
         return mCart;
     }
+
+    private void showDeleteAlertDialog(final int adapterPosition, final String pId) {
+        try {
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(mContext);
+            alertDialogBuilder.setMessage(R.string.remove_1);
+            alertDialogBuilder.setCancelable(false);
+            alertDialogBuilder.setPositiveButton(R.string.y1, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface arg0, int arg1) {
+                    DB_SQLlite db = new DB_SQLlite(mContext);
+                    db.delete(pId);
+                    mCart.remove(adapterPosition);
+                    notifyDataSetChanged();
+                    notifyItemRemoved(adapterPosition);
+                    Toast.makeText(mContext, R.string.Product_deleted, Toast.LENGTH_SHORT).show();
+
+                }
+            });
+            alertDialogBuilder.setNegativeButton(R.string.no_2, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+
+                }
+            });
+            AlertDialog alertDialog = alertDialogBuilder.create();
+            alertDialog.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public interface CartListener {
         void onDataChange(ArrayList<Product> newProductsArrayList);
@@ -143,45 +182,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
             edPrice = itemView.findViewById(R.id.tv_price);
 
 
-            ivcancelImage.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    try {
-                        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(mContext);
-                        alertDialogBuilder.setMessage(R.string.remove_1);
-                        alertDialogBuilder.setCancelable(false);
-                        AlertDialog.Builder yes = alertDialogBuilder.setPositiveButton(R.string.y1, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface arg0, int arg1) {
-                                DB_SQLlite db = new DB_SQLlite(mContext);
-
-                                db.delete(getItemCount());
-                                mCart.remove(getAdapterPosition());
-                                notifyDataSetChanged();
-                                notifyItemRemoved(getAdapterPosition());
-                                Toast.makeText(mContext, R.string.Product_deleted, Toast.LENGTH_SHORT).show();
-
-                            }
-                        });
-                        alertDialogBuilder.setNegativeButton(R.string.no_2, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-
-                            }
-                        });
-                        AlertDialog alertDialog = alertDialogBuilder.create();
-                        alertDialog.show();
-                    } catch (Exception e) {
-
-                    }
-
-                }
-
-
-            });
-
-
         }
+
 
     }
 
