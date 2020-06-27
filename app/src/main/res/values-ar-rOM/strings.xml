@@ -7,7 +7,6 @@
     <string name="e_mail">البريد الالكتروني</string>
     <string name="phone">رقم الهاتف</string>
     <string name="loginpage">تسجيل الدخول</string>
-    <string name="register">تسجيل جديد</string>
     <string name="re_type_password">اعادة كتابة الرقم السري</string>
     <string name="your_name">الاسم كامل</string>
     <string name="total">المجموع</string>
@@ -26,4 +25,49 @@
     <string name="tv_no_barcode">رقم الباركود</string>
     <string name="btn_barcode">مسح الباركود</string>
     <string name="tv_or">______________أو_______________</string>
+    <string name="textView">حسابي</string>
+    <string name="textView3">تطبيق حسابي</string>
+    <string name="register">إنشاء حساب جديد</string>
+    <string name="About_Product">معلومات عن المنتج</string>
+    <string name="BarCode_Number">رقم المنتج</string>
+    <string name="Product_Name">اسم المنتج</string>
+    <string name="Product_Price">سعر المنتج</string>
+    <string name="Product_Size">حجم المنتج</string>
+    <string name="q1">هل تريد تأكيد شراء هذا المنتج</string>
+    <string name="yes_1">نعم</string>
+    <string name="error1">حطأ فالاضافه</string>
+    <string name="alarm_1">تمت اضافة هذا المنتج من قبل</string>
+    <string name="added_successfully">تمت الاضافة بنجاح!!</string>
+    <string name="no_1">لا</string>
+    <string name="About_HSabi">عن حسابي</string>
+    <string name="msg_1">هذا التطبيق يتيح للعملاء مسح وجمع الأشياء وطباعة الفاتورة الرقميةا</string>
+    <string name="ok_1">حسنا</string>
+    <string name="Contact_us">للتواصل</string>
+    <string name="con_1">يمكنك التواصل معنا بواسطة رقم الهاتم +9689568338 او الايميل alhassaniamani@gmail.com</string>
+    <string name="or_1">ريال عماني</string>
+    <string name="remove_1">تأكيد الحذف</string>
+    <string name="y1">نعم</string>
+    <string name="Product_deleted">تم الحذف</string>
+    <string name="no_2">No</string>
+    <string name="OMR_1">ريال عماني</string>
+    <string name="logged_in">تم التسجيل</string>
+    <string name="Please_Login">الرجاء التسجيل</string>
+    <string name="emailId_1">الرجاء ادخال البريد الالكتروني</string>
+    <string name="password__1">الرجاء ادخال الرقم السري</string>
+    <string name="Loggin_Error">خطأ فالتسجيل</string>
+    <string name="email_1">الرجاء ادخال البريد الالكتروني</string>
+    <string name="orrec_1">الرجاء ادخال البريد الالكتروني بطريق صحيحه</string>
+    <string name="numbe">الرداء ادخال رقم الهاتف</string>
+    <string name="password_1">الرجاء ادخال كلمة المرور</string>
+    <string name="must">كلمة المرور تتكون من 6احرف او ارقام</string>
+    <string name="Registering">شكرا للتسجيل</string>
+    <string name="Authentication_1">خطأ فالمصادقه</string>
+    <string name="happened_1">حدث خطأ الرداء اعادة التسجيل</string>
+    <string name="About">معلومات المنتج</string>
+    <string name="Num">رقم المنتج</string>
+    <string name="pa">المنتج غير موجود</string>
+    <string name="no_3">لا يوجد رقم</string>
+    <string name="Last_Bill">الفاتوره السابقه</string>
+
+
 </resources>

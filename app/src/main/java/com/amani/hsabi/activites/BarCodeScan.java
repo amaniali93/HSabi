@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.amani.hsabi.R;
 import com.amani.hsabi.models.MyContats;
 import com.amani.hsabi.models.Product;
 import com.google.firebase.database.DataSnapshot;
@@ -111,27 +112,27 @@ public class BarCodeScan extends AppCompatActivity implements ZXingScannerView.R
     private void showAlertDialog(final Product value) {
         AlertDialog.Builder dialog = new AlertDialog.Builder(BarCodeScan.this);
         dialog.setCancelable(false);
-        dialog.setTitle("About Product");
-        dialog.setMessage("BarCode Number:   " + value.getpBarcodeNumber() + "\n" +
-                "Product Name:     " + value.getpName() + "\n" +
-                "Product Price:    " + value.getpPrice() + "\n" +
-                "Product Size:     " + value.getpSize() + "\n" +
-                "Are you sure you want to add  to your Bill?");
+        dialog.setTitle(R.string.About_Product);
+        dialog.setMessage(getString(R.string.BarCode_Number) + value.getpBarcodeNumber() + "\n" +
+                getString(R.string.Product_Name) + value.getpName() + "\n" +
+                getString(R.string.Product_Price) + value.getpPrice() + "\n" +
+                getString(R.string.Product_Size) + value.getpSize() + "\n" +
+                getString(R.string.q1));
 
-        dialog.setPositiveButton("yes", new DialogInterface.OnClickListener() {
+        dialog.setPositiveButton(R.string.yes_1, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int id) {
 
                 DB_SQLlite db = new DB_SQLlite(BarCodeScan.this);
                 int result = db.addProduct(value);
                 if (result == -1) {
-                    Toast.makeText(BarCodeScan.this, "Error happened while storing item!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(BarCodeScan.this, R.string.error1, Toast.LENGTH_SHORT).show();
                     onBackPressed();
                 } else if (result == 0) {
-                    Toast.makeText(BarCodeScan.this, "This Product is already in cart!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(BarCodeScan.this, R.string.alarm_1, Toast.LENGTH_SHORT).show();
                     onBackPressed();
                 } else {
-                    Toast.makeText(BarCodeScan.this, "added successfully!!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(BarCodeScan.this, R.string.added_successfully, Toast.LENGTH_SHORT).show();
                     Intent intentdone = new Intent(BarCodeScan.this, FunctionActivity.class);
                     intentdone.putExtra(MyContats.KEY_SCANNED_PRODUCT, value);
                     startActivity(intentdone);
@@ -140,7 +141,7 @@ public class BarCodeScan extends AppCompatActivity implements ZXingScannerView.R
 
             }
         })
-                .setNegativeButton("no", new DialogInterface.OnClickListener() {
+                .setNegativeButton(R.string.no_1, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         //Action for "no".

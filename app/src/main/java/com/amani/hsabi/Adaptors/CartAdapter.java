@@ -67,7 +67,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
 
         int price = (product.getQunt() * a);
 
-        holder.edPrice.setText((int) price + " OMR");
+        holder.edPrice.setText((int) price + "   " + mContext.getString(R.string.or_1));
 
         holder.ivaddImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,7 +76,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
                 product.setQunt(r);
                 holder.tvquntity.setText(String.valueOf(r));
                 int price = (product.getQunt() * a);
-                holder.edPrice.setText((int) price + " OMR");
+                holder.edPrice.setText((int) price + "   " + mContext.getString(R.string.or_1));
                 if (mListener != null) {
                     mListener.onDataChange(mCart);
                 }
@@ -90,7 +90,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
                     product.setQunt(r);
                     holder.tvquntity.setText(String.valueOf(r));
                     int price = (product.getQunt() * a);
-                    holder.edPrice.setText((int) price + " OMR");
+                    holder.edPrice.setText((int) price + "   " + mContext.getString(R.string.or_1));
                     if (mListener != null) {
                         mListener.onDataChange(mCart);
                     }
@@ -148,9 +148,9 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
                 public void onClick(View v) {
                     try {
                         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(mContext);
-                        alertDialogBuilder.setMessage("Are you sure,You wanted to Remove?\n");
+                        alertDialogBuilder.setMessage(R.string.remove_1);
                         alertDialogBuilder.setCancelable(false);
-                        AlertDialog.Builder yes = alertDialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        AlertDialog.Builder yes = alertDialogBuilder.setPositiveButton(R.string.y1, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface arg0, int arg1) {
                                 DB_SQLlite db = new DB_SQLlite(mContext);
@@ -159,11 +159,11 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
                                 mCart.remove(getAdapterPosition());
                                 notifyDataSetChanged();
                                 notifyItemRemoved(getAdapterPosition());
-                                Toast.makeText(mContext, "Product deleted!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(mContext, R.string.Product_deleted, Toast.LENGTH_SHORT).show();
 
                             }
                         });
-                        alertDialogBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        alertDialogBuilder.setNegativeButton(R.string.no_2, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
 

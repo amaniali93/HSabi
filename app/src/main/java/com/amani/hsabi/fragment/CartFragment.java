@@ -111,7 +111,7 @@ public class CartFragment extends Fragment implements CartAdapter.CartListener {
     }
 
     public void calculateTotal(int totalPrice) {
-        totalprice.setText(totalPrice + " OMR");
+        totalprice.setText(totalPrice + "   " + getString(R.string.OMR_1));
         mTotalPrice = totalPrice;
 
     }

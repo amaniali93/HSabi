@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.amani.hsabi.R;
+import com.amani.hsabi.activites.DB_SQLlite;
 import com.amani.hsabi.models.Billinfo;
 import com.amani.hsabi.models.HistoryModel;
 
@@ -21,11 +22,20 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.MyViewHo
     private Context mContext;
     private ArrayList<HistoryModel> mHistory;
     private HistoryAdapter mListener;
+    private DB_SQLlite dbSqLlite;
 
     public HistoryAdapter() {
         mHistory = new ArrayList<>();
     }
 
+    public HistoryAdapter(DB_SQLlite db) {
+        this.dbSqLlite = db;
+        mHistory = new ArrayList<>();
+        ArrayList<Billinfo> bills = dbSqLlite.getlastBill();
+        for (Billinfo bill : bills) {
+            mHistory.add(new HistoryModel(bill.getbId(), bill.getbDate(), bill.getbPrice()));
+        }
+    }
     public void update(int position, HistoryModel HistoryModel) {
         mHistory.add(position, HistoryModel);
         notifyItemChanged(position);

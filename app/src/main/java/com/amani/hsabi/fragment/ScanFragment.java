@@ -71,7 +71,7 @@ public class ScanFragment extends Fragment {
             public void onClick(View v) {
                 final String barcodeNo = barcodeNomber.getText().toString();
                 if (barcodeNo.isEmpty()) {
-                    barcodeNomber.setError("Number is not found");
+                    barcodeNomber.setError(getString(R.string.no_3));
                     barcodeNomber.requestFocus();
                 } else {
                     FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -92,27 +92,27 @@ public class ScanFragment extends Fragment {
                                     // here write the code you want
                                     AlertDialog.Builder dialog = new AlertDialog.Builder(getContext());
                                     dialog.setCancelable(false);
-                                    dialog.setTitle("About Product");
-                                    dialog.setMessage("BarCode Number:   " + value.getpBarcodeNumber() + "\n" +
-                                            "Product Name:     " + value.getpName() + "\n" +
-                                            "Product Price:    " + value.getpPrice() + "\n" +
-                                            "Product Size:     " + value.getpSize() + "\n" +
-                                            "Are you sure you want to add  to your Bill?");
+                                    dialog.setTitle(R.string.About);
+                                    dialog.setMessage(getString(R.string.Num) + value.getpBarcodeNumber() + "\n" +
+                                            getString(R.string.Product_Name) + value.getpName() + "\n" +
+                                            getString(R.string.Product_Price) + value.getpPrice() + "\n" +
+                                            getString(R.string.Product_Size) + value.getpSize() + "\n" +
+                                            getString(R.string.q1));
 
-                                    dialog.setPositiveButton("yes", new DialogInterface.OnClickListener() {
+                                    dialog.setPositiveButton(R.string.yes_1, new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int id) {
                                             //Action for "yes"
                                             DB_SQLlite db = new DB_SQLlite(getContext());
                                             int result = db.addProduct(value);
                                             if (result == -1) {
-                                                Toast.makeText(getContext(), "Error happened while storing item!", Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(getContext(), R.string.error1, Toast.LENGTH_SHORT).show();
 
                                             } else if (result == 0) {
-                                                Toast.makeText(getContext(), "This Product is already in cart!", Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(getContext(), R.string.alarm_1, Toast.LENGTH_SHORT).show();
 
                                             } else {
-                                                Toast.makeText(getContext(), "added successfully!!", Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(getContext(), R.string.added_successfully, Toast.LENGTH_SHORT).show();
                                                 Intent intentdone = new Intent(getContext(), FunctionActivity.class);
                                                 intentdone.putExtra(MyContats.KEY_SCANNED_PRODUCT, value);
                                                 startActivity(intentdone);
@@ -124,7 +124,7 @@ public class ScanFragment extends Fragment {
 
                                         }
                                     })
-                                            .setNegativeButton("no", new DialogInterface.OnClickListener() {
+                                            .setNegativeButton(R.string.no_1, new DialogInterface.OnClickListener() {
                                                 @Override
                                                 public void onClick(DialogInterface dialog, int which) {
                                                     //Action for "no".
@@ -139,7 +139,7 @@ public class ScanFragment extends Fragment {
                                 }
                             }
                             if (notFound) {
-                                Toast.makeText(getContext(), "Sorry, Product is not available!!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getContext(), R.string.pa, Toast.LENGTH_SHORT).show();
                             }
                         }
 

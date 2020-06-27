@@ -81,15 +81,15 @@ public class RegisterFragment extends Fragment {
 
 
                 if (email.isEmpty()) {
-                    emailid.setError("Please write your email");
+                    emailid.setError(getString(R.string.email_1));
                 } else if (!isEmailValid(email)) {
-                    emailid.setError("Please write your email correctly!");
+                    emailid.setError(getString(R.string.orrec_1));
                 } else if (phone.isEmpty()) {
-                    phoneNo.setError("Please write your phone number");
+                    phoneNo.setError(getString(R.string.numbe));
                 } else if (pass_word.isEmpty()) {
-                    password.setError("Please write your password");
+                    password.setError(getString(R.string.password_1));
                 } else if (pass_word.length() < 6) {
-                    password.setError("Password must be 6 chars at least");
+                    password.setError(getString(R.string.must));
                 } else {
                     registerUser(email, phone, pass_word);
                 }
@@ -118,7 +118,7 @@ public class RegisterFragment extends Fragment {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success");
-                            Toast.makeText(mContext, "Thank you for Registering with us!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(mContext, R.string.Registering, Toast.LENGTH_SHORT).show();
                             FirebaseUser firebaseUser = mAuth.getCurrentUser();
 
                             User u = new User();
@@ -133,7 +133,7 @@ public class RegisterFragment extends Fragment {
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                            Toast.makeText(mContext, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(mContext, R.string.Authentication_1, Toast.LENGTH_SHORT).show();
 
                         }
 
@@ -158,7 +158,7 @@ public class RegisterFragment extends Fragment {
                     }
 
                 } else {
-                    Toast.makeText(mContext, "Error happened while writing data to firebase!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, R.string.happened_1, Toast.LENGTH_SHORT).show();
                 }
             }
         });

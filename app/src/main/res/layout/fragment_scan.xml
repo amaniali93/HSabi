@@ -9,7 +9,7 @@
         android:layout_width="230dp"
         android:layout_height="90dp"
         android:text="@string/btn_barcode"
-        android:textSize="30dp"
+        android:textSize="25dp"
         app:layout_constraintBottom_toTopOf="@+id/tv_or"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"

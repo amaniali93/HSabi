@@ -1,5 +1,6 @@
 package com.amani.hsabi.activites;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,9 +14,11 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.amani.hsabi.Adaptors.MyViewPagerAdapter;
+import com.amani.hsabi.Interfaces.MediatorInterface;
 import com.amani.hsabi.R;
 import com.amani.hsabi.fragment.BillFragment;
 import com.amani.hsabi.fragment.CartFragment;
+import com.amani.hsabi.fragment.LoginFragment;
 import com.amani.hsabi.models.Billinfo;
 import com.amani.hsabi.models.MyContats;
 import com.amani.hsabi.models.Product;
@@ -53,18 +56,39 @@ public class FunctionActivity extends AppCompatActivity implements CartFragment.
         return true;
     }
 
+    Context mContext;
+    private MediatorInterface mListener = (MediatorInterface) mContext;
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.nav_history) {
-            // changeFragmentTo(new HistoryFragment(), HistoryFragment.class.getSimpleName());
-        }
-
         if (id == R.id.nav_about_app) {
             AlertDialog alertDialog = new AlertDialog.Builder(FunctionActivity.this).create();
-            alertDialog.setTitle("About HSabi");
-            alertDialog.setMessage("HSabi App is developed by Amani This App allow for customer to scan and collect the things and print digital Bill");
-            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+            alertDialog.setTitle(getString(R.string.Last_Bill));
+            alertDialog.setMessage("from DB");
+            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, getString(R.string.ok_1),
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+            alertDialog.show();
+        }
+       /* Log.i("FunctionActivity", "MenuItem selected " + id);
+        if (id == R.id.nav_history) {
+            Log.i("FunctionActivity", "switch to HistoryFragment");
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.add(new HistoryFragment(),HistoryFragment.class.getSimpleName());
+            ft.commit();
+            Log.i("FunctionActivity", "finish switch to HistoryFragment");
+            //changeFragmentTo(new HistoryFragment(), HistoryFragment.class.getSimpleName());
+        }
+*/
+        if (id == R.id.nav_about_app) {
+            AlertDialog alertDialog = new AlertDialog.Builder(FunctionActivity.this).create();
+            alertDialog.setTitle(getString(R.string.About_HSabi));
+            alertDialog.setMessage(getString(R.string.msg_1));
+            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, getString(R.string.ok_1),
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.dismiss();
@@ -74,8 +98,8 @@ public class FunctionActivity extends AppCompatActivity implements CartFragment.
         }
         if (id == R.id.nav_contact) {
             AlertDialog alertDialog = new AlertDialog.Builder(FunctionActivity.this).create();
-            alertDialog.setTitle("Contact us");
-            alertDialog.setMessage("you can contact us by Phone +9689568338 Or by Email: alhassaniamani@gmail.com");
+            alertDialog.setTitle(getString(R.string.Contact_us));
+            alertDialog.setMessage(getString(R.string.con_1));
             alertDialog.show();
         }
         if (id == R.id.nav_logout) {
@@ -88,7 +112,9 @@ public class FunctionActivity extends AppCompatActivity implements CartFragment.
 
     public void LogOut() {
         FirebaseAuth.getInstance().signOut();
-        //changeFragmentTo(new LoginFragment(), LoginFragment.class.getSimpleName());
+        if (mListener != null) {
+            mListener.changeFragmentTo(new LoginFragment(), LoginFragment.class.getSimpleName());
+        }
     }
 
 

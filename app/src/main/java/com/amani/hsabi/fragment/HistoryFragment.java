@@ -55,9 +55,9 @@ public class HistoryFragment extends Fragment {
         final View parentView = inflater.inflate(R.layout.fragment_history, container, false);
         recyclerView = parentView.findViewById(R.id.recycler_cart);
         setupRecyclerView(recyclerView);
-        mAdapter = new HistoryAdapter();
-        DB_SQLlite db = new DB_SQLlite(mContext);
 
+        DB_SQLlite db = new DB_SQLlite(mContext);
+        mAdapter = new HistoryAdapter(db);
         // mAdapter.update(db.getlastBill());
 
         recyclerView.setAdapter(mAdapter);

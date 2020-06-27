@@ -10,7 +10,6 @@
     <string name="e_mail">Email</string>
     <string name="phone">phone</string>
     <string name="loginpage">Login</string>
-    <string name="register">Register</string>
     <string name="re_type_password">Re-type Password</string>
     <string name="your_name">Full Name</string>
     <string name="btn_bill">Bill</string>
@@ -28,4 +27,49 @@
     <string name="tv_no_barcode">Enter Barcode Number</string>
     <string name="btn_barcode">SCANNING</string>
     <string name="tv_or">______________or_______________</string>
+    <string name="textView">HSabi</string>
+    <string name="textView3">HSabi App</string>
+    <string name="register">Create New Account</string>
+    <string name="About_Product">About Product</string>
+    <string name="BarCode_Number">BarCode Number:   </string>
+    <string name="Product_Name">Product Name:     </string>
+    <string name="Product_Price">Product Price:    </string>
+    <string name="Product_Size">Product Size:     </string>
+    <string name="q1">Are you sure you want to add to your Bill?</string>
+    <string name="yes_1">yes</string>
+    <string name="error1">Error happened while storing item!</string>
+    <string name="alarm_1">This Product is already in cart!</string>
+    <string name="added_successfully">added successfully!!</string>
+    <string name="no_1">no</string>
+    <string name="About_HSabi">About HSabi</string>
+    <string name="msg_1">HSabi App is developed by Amani This App allow for customer to scan and collect the things and print digital Bill</string>
+    <string name="ok_1">OK</string>
+    <string name="Contact_us">Contact us</string>
+    <string name="con_1">you can contact us by Phone +9689568338 Or by Email: alhassaniamani@gmail.com</string>
+    <string name="or_1"> OMR</string>
+    <string name="remove_1">Are you sure,You wanted to Remove?\n</string>
+    <string name="y1">Yes</string>
+    <string name="Product_deleted">Product deleted!</string>
+    <string name="no_2">No</string>
+    <string name="OMR_1"> OMR</string>
+    <string name="logged_in">you are logged in</string>
+    <string name="Please_Login">Please Login</string>
+    <string name="emailId_1">Please enter emailId </string>
+    <string name="password__1">Please enter password</string>
+    <string name="Loggin_Error">Loggin Error!</string>
+    <string name="email_1">Please write your email</string>
+    <string name="orrec_1">Please write your email correctly!</string>
+    <string name="numbe">Please write your phone number</string>
+    <string name="password_1">Please write your password</string>
+    <string name="must">Password must be 6 chars at least</string>
+    <string name="Registering">Thank you for Registering with us!</string>
+    <string name="Authentication_1">Authentication failed.</string>
+    <string name="happened_1">Error happened Try again</string>
+    <string name="About">About Product</string>
+    <string name="Num">BarCode Number:   </string>
+    <string name="pa">Sorry, Product is not available!!</string>
+    <string name="no_3">Number Not Found</string>
+    <string name="Last_Bill">Last Bill</string>
+
+
 </resources>

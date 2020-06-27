@@ -2,7 +2,11 @@ package com.amani.hsabi.models;
 
 public class HistoryModel extends Billinfo {
 
-
+    public HistoryModel(String billNumber, String billDate, String billPrice) {
+        this.billNumber = billNumber;
+        this.billDate = billDate;
+        this.billPrice = billPrice;
+    }
     public String getBillNumber() {
         return billNumber;
     }

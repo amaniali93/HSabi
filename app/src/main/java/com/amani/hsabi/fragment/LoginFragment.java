@@ -70,11 +70,11 @@ public class LoginFragment extends Fragment {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser mFirebaseUser = mAuth.getCurrentUser();
                 if (mFirebaseUser != null) {
-                    Toast.makeText(getActivity(), "you are logged in", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), R.string.logged_in, Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(getActivity().getApplication(), FunctionActivity.class);
                     startActivity(i);
                 } else {
-                    Toast.makeText(getActivity(), "Please Login", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), R.string.Please_Login, Toast.LENGTH_SHORT).show();
                 }
             }
         };
@@ -84,10 +84,10 @@ public class LoginFragment extends Fragment {
                 String email = emailid.getText().toString();
                 String passWord = password.getText().toString();
                 if (email.isEmpty()) {
-                        emailid.setError("Please enter emailId ");
+                    emailid.setError(getString(R.string.emailId_1));
                     emailid.requestFocus();
                 } else if (passWord.isEmpty()) {
-                    password.setError("Please enter password");
+                    password.setError(getString(R.string.password__1));
                     password.requestFocus();
                 } else {
                     mAuth.signInWithEmailAndPassword(email, passWord)
@@ -98,7 +98,7 @@ public class LoginFragment extends Fragment {
                                         Intent intefunction = new Intent(getActivity().getApplication(), FunctionActivity.class);
                                         startActivity(intefunction);
                                     } else {
-                                        Toast.makeText(getActivity(), "Loggin Error!", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getActivity(), R.string.Loggin_Error, Toast.LENGTH_SHORT).show();
                                     }
 
                                 }
